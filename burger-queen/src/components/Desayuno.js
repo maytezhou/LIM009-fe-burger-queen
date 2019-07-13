@@ -2,7 +2,7 @@ import React from 'react';
 
 const Desayuno = () => (
     <div>
-        <table class="table">
+        <table className="table">
             <tbody>
                 <tr>
                     <td>Cafe Americano</td>
