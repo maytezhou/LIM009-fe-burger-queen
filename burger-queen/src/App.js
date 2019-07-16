@@ -18,6 +18,7 @@ var firebaseConfig = {
 };
 
 var app = firebase.initializeApp(firebaseConfig);
+console.log(app);
 
 const FirestoreCollection = () => {
   const [value, loading, error] = useCollection(
@@ -26,7 +27,7 @@ const FirestoreCollection = () => {
       snapshotListenOptions: { includeMetadataChanges: true },
     }
   );
-
+   
   return (
     <div>
       <p>
@@ -36,9 +37,7 @@ const FirestoreCollection = () => {
           <span>
             Collection:{' '}
             {value.docs.map(doc => (
-              <React.Fragment key={doc.id}>
-                {JSON.stringify(doc.data())},{' '}
-              </React.Fragment>
+              <div>{doc.data().name} {doc.data().price}</div>
             ))}
           </span>
         )}

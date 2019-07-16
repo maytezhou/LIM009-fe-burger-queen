@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-const Almuerzo = () => {
+const Almuerzo = (arrObj) => {
     const [tipo, setTipo] = useState('')
+   
     
     return (
     <>
