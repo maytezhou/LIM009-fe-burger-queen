@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Desayuno from './Desayuno';
 import Almuerzo from './Almuerzo';
+import Acompañamientos from './Acompa\u00F1amientos';
+import Bebidas from './Bebidas';
 
 const Menu = () => {
     const [tipo, setTipo] = useState('desayuno')
@@ -25,12 +27,12 @@ const Menu = () => {
                 )}
                 {tipo === 'acompañamiento' && (
                     <div>
-                         acompañamiento
+                         <Acompañamientos/>
                     </div>
                 )}
                 {tipo === 'bebidas' && (
                     <div>
-                         bebidas
+                         <Bebidas/>
                     </div>
                 )}
             </div>

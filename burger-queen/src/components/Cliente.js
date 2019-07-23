@@ -10,8 +10,6 @@ const Cliente = () => (
                 <input type="number" min ='0'className="form-control" aria-label="Text input with segmented dropdown button"/>
             </div>
         </div>
-        <button type="button" className="btn btn-outline-success">Nueva Orden</button>
-        <button type="button" className="btn btn-outline-success">Lista de ordenes</button>
     </div>
 )
 export default Cliente;

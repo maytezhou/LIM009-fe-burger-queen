@@ -1,7 +1,6 @@
 import React from 'react';
-const Simple = ({ precio1,precio2,precio3}) => {
+const Adicional = ({ precio1,precio2,precio3}) => {
   
-     
     return (
       <>
         <div > Solo simple ${precio1}
@@ -16,4 +15,4 @@ const Simple = ({ precio1,precio2,precio3}) => {
       </>
     );
   };
-  export default Simple;
+  export default Adicional;

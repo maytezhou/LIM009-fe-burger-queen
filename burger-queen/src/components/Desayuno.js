@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
-import app from '../components/Firebase'
-
-
-
+import app from '../components/Firebase';
+import Producto from './Producto';
+import Pedido from './Pedido';
 
 const Desayuno = () => {
+    const [precio, setPrecio] = useState(0);
+    const [producto, setProducto] = useState('');
     const [value, loading, error] = useCollection(
-      app.firestore().collection('productos2'),
+      app.firestore().collection('producto3'),
       {
         snapshotListenOptions: { includeMetadataChanges: true },
       }
@@ -20,22 +21,16 @@ const Desayuno = () => {
           {value && (
                 <span>
                 {value.docs.map(ele => (
-                    <>
-                    <div>
-                        {ele.data().americano.name} ${ele.data().americano.price}
+                    ele.data().menuType === 'desayuno' &&(
+                    <div key={ele.data().id}>
+                        {ele.data().name} ${ele.data().price} <button onClick={() => {setPrecio(ele.data().price); setProducto(ele.data().name);}}>
+                        Agregar 
+                        </button>
+                    
                     </div>
-                    <div>
-                        {ele.data().leche.name} ${ele.data().leche.price}
-                    </div>
-                    <div>
-                        {ele.data().sandwich.name} ${ele.data().sandwich.price}
-                    </div>
-                    <div>
-                        {ele.data().jugo.name} ${ele.data().jugo.price}
-                    </div>
-                    </>
-                )
+                ))
                 )}
+                 
                 </span>
           )}
       </div>
