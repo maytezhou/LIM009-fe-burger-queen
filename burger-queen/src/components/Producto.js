@@ -1,14 +1,22 @@
-import React from 'react';
-import Contador from './Contador'
+import React from "react";
+import Contador from "./Contador";
 
-const Producto = ({producto, precio}) => (
-    <tr>
-        <td>
-            <Contador/>
-        </td>
-            <td>{producto}</td>
-            <td>${precio}</td>
-            <td><button>x</button></td>
-    </tr>
-)
+const Producto = ({ producto, eliminarProducto }) => (
+  <tr>
+    <td>
+      <Contador />
+    </td>
+    <td>{producto.name}</td>
+    <td>${producto.price}</td>
+    <td>
+      <button
+        onClick={() => {
+          eliminarProducto(producto.id);
+        }}
+      >
+        x
+      </button>
+    </td>
+  </tr>
+);
 export default Producto;

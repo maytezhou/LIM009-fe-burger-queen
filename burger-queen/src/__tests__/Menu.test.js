@@ -11,7 +11,7 @@ it("renders", () => {
 });
 it("inserts", async () => {
   const { getByTestId, getByText } = render(<Menu />);
-const btn = getByText("Desayuno")
+  const btn = getByText("Desayuno");
   act(() => {
     fireEvent.click(btn);
   });
@@ -21,4 +21,10 @@ const btn = getByText("Desayuno")
   // expect(getByTestId('imgLogo')).toHaveClass('center');
   // expect(getByAltText('logo')).toHaveAttribute('alt', expect.stringContaining('logo'));
   expect(desayunoElement.textContent).toBe("Collection: Loading...");
+
+  const desayunoProductos = await waitForElement(() => {
+    return getByTestId("desayuno-productos");
+  });
+
+  expect(desayunoProductos.textContent.startsWith('Café con leche')).toBe(true);
 });

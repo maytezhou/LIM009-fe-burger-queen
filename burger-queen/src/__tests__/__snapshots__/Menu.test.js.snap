@@ -31,10 +31,10 @@ exports[`renders 1`] = `
   <div
     data-testid="content"
   >
-    <div
-      data-testid="desayuno"
-    >
-      <div>
+    <div>
+      <div
+        data-testid="desayuno"
+      >
         <span>
           Collection: Loading...
         </span>
