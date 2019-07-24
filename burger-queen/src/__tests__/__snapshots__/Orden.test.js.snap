@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<DocumentFragment>
+  <button
+    class="btn btn-outline-success"
+    data-testid="new-order-btn"
+    type="button"
+  >
+    Nueva Orden
+  </button>
+  <button
+    class="btn btn-outline-success"
+    data-testid="order-list-btn"
+    type="button"
+  >
+    Lista de ordenes
+  </button>
+</DocumentFragment>
+`;

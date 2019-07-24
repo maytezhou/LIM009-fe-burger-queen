@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<DocumentFragment>
+  <div>
+    <button
+      class="btn btn-info"
+      type="button"
+    >
+      Desayuno
+    </button>
+    <button
+      class="btn btn-info"
+      type="button"
+    >
+      Almuerzo y Cena
+    </button>
+    <button
+      class="btn btn-info"
+      type="button"
+    >
+      Acompañamientos
+    </button>
+    <button
+      class="btn btn-info"
+      type="button"
+    >
+      Bebidas
+    </button>
+  </div>
+  <div
+    data-testid="content"
+  >
+    <div
+      data-testid="desayuno"
+    >
+      <div>
+        <span>
+          Collection: Loading...
+        </span>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

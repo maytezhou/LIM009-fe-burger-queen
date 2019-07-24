@@ -14,9 +14,9 @@ const Menu = () => {
                 <button onClick={() => {setTipo('acompañamiento')}} type="button" className="btn btn-info">Acompañamientos</button>
                 <button onClick={() => {setTipo('bebidas')}} type="button" className="btn btn-info">Bebidas</button>      
             </div>
-            <div>
+            <div data-testid='content'>
                 {tipo === 'desayuno' && (
-                    <div>
+                    <div data-testid='desayuno'>
                          <Desayuno/>
                     </div>
                 )}
