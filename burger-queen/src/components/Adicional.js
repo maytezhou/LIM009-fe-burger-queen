@@ -1,19 +1,38 @@
 import React from "react";
-const Adicional = ({ precio1, precio2, precio3 }) => {
+// const transformToStandar = (obj, price) => {
+//   const newObj = {
+//     ...obj,
+//     price
+//   };
+//   return newObj;
+// };
+
+const Adicional = ({
+  product,
+  precio,
+  optionName,
+  agregarProducto,
+  nombre,
+  dni
+}) => {
   return (
     <>
       <div>
         {" "}
-        Solo simple ${precio1}
-        <button>Agregar </button>
-      </div>
-      <div>
-        Huevo + ${precio2}
-        <button>Agregar</button>
-      </div>
-      <div>
-        Queso + ${precio3}
-        <button>Agregar</button>
+        {optionName} ${precio}
+        <button
+          onClick={() => {
+            //agregarProducto(transformToStandar(product, precio));
+            agregarProducto({
+              ...product,
+              price: precio,
+              name: nombre,
+              id: dni
+            });
+          }}
+        >
+          Agregar{" "}
+        </button>
       </div>
     </>
   );

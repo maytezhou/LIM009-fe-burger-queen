@@ -4,7 +4,7 @@ import Almuerzo from "./Almuerzo";
 import Acompañamientos from "./Acompa\u00F1amientos";
 import Bebidas from "./Bebidas";
 
-const Menu = ({ agregarProducto }) => {
+const Menu = ({ agregarProducto, allProducts}) => {
   const [tipo, setTipo] = useState("desayuno");
   return (
     <>
@@ -49,22 +49,23 @@ const Menu = ({ agregarProducto }) => {
       <div data-testid="content">
         {tipo === "desayuno" && (
           <div>
-            <Desayuno agregarProducto={agregarProducto} />
+            <Desayuno agregarProducto={agregarProducto}  allProducts={allProducts}/>
           </div>
         )}
         {tipo === "almuerzo" && (
           <div>
-            <Almuerzo />
+            <Almuerzo agregarProducto={agregarProducto} allProducts={allProducts}  
+                           />
           </div>
         )}
         {tipo === "acompañamiento" && (
           <div>
-            <Acompañamientos />
+            <Acompañamientos agregarProducto={agregarProducto} allProducts={allProducts}/>
           </div>
         )}
         {tipo === "bebidas" && (
           <div>
-            <Bebidas />
+            <Bebidas agregarProducto={agregarProducto} allProducts={allProducts}/>
           </div>
         )}
       </div>

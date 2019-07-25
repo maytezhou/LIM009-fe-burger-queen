@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Cliente from "./Cliente";
-import Contador from "./Contador";
 import Producto from "./Producto";
 
-const Pedido = ({ productos, eliminarProducto }) => {
+const Pedido = ({ productos, eliminarProducto}) => {
   return (
     <div className="card text-white bg-info mb-3" style={{ maxWidth: "50%" }}>
       <div className="card-header">
@@ -26,6 +25,7 @@ const Pedido = ({ productos, eliminarProducto }) => {
                   key={p.id}
                   producto={p}
                   eliminarProducto={eliminarProducto}
+                
                 />
               ))}
             </tbody>

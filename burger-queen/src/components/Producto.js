@@ -4,7 +4,7 @@ import Contador from "./Contador";
 const Producto = ({ producto, eliminarProducto }) => (
   <tr>
     <td>
-      <Contador />
+      <Contador price={producto.price} />
     </td>
     <td>{producto.name}</td>
     <td>${producto.price}</td>

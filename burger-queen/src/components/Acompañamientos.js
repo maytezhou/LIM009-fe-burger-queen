@@ -1,27 +1,22 @@
 import React from "react";
-import { useCollection } from "react-firebase-hooks/firestore";
-import app from "../components/Firebase";
 
-const Acompañamientos = () => {
-  const [value, loading, error] = useCollection(
-    app.firestore().collection("producto3"),
-    {
-      snapshotListenOptions: { includeMetadataChanges: true }
-    }
-  );
-
+const Acompañamientos = ({ allProducts, agregarProducto }) => {
   return (
     <div>
-      {error && <strong>Error: {error}</strong>}
-      {loading && <span>Collection: Loading...</span>}
-      {value && (
+      {allProducts && (
         <span>
-          {value.docs.map(
+          {allProducts.docs.map(
             (ele) =>
               ele.data().menuType === "acompañamiento" && (
                 <div key={ele.data().id}>
                   {ele.data().name} ${ele.data().price}{" "}
-                  <button>Agregar </button>
+                  <button
+                    onClick={() => {
+                      agregarProducto(ele.data());
+                    }}
+                  >
+                    Agregar{" "}
+                  </button>
                 </div>
               )
           )}
