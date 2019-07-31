@@ -11,15 +11,27 @@ import axios from 'axios';
 
 
 function App() {
-  const [data, setData] = useState({ hits: [] });
+ /* const [data, setData] = useState({ hits: [] });
 
   useEffect(async () => {
     const result = await axios(
-      'http://hn.algolia.com/api/v1/search?query=redux',
+      'https://github.com/maytezhou/LIM009-fe-burger-queen/blob/master/burger-queen/src/data/products.json',
     );
-
+     console.log(result.data);
     setData(result.data);
-  });
+  });*/
+  const [clients2,setClients2]=useState([]);
+   //Search git hub users 
+   const searchUsers = async value=> {
+  //  setLoading(true);
+     // console.log(value);
+      const res = await axios.get('https://github.com/maytezhou/LIM009-fe-burger-queen/blob/master/burger-queen/src/data/products.json');
+      console.log(res.data)
+    console.log(res.data.items); // [{},{},{}]
+      setClients2(res.data.items);
+      console.log(clients2);
+  //  setLoading(false);    
+    }
 
   const [allProducts] = useCollection(app.firestore().collection("producto3"), {
     snapshotListenOptions: { includeMetadataChanges: true }
