@@ -1,7 +1,7 @@
 import React from "react";
 import Contador from "./Contador";
 
-const Producto = ({ producto, eliminarProducto }) => (
+const Producto = ({ producto, eliminarProducto,addOrderToFirebase }) => (
   <tr>
     <td>
       <Contador price={producto.price} />

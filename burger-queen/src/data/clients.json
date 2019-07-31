@@ -1,0 +1,40 @@
+[
+   {
+       "nameClient":"Mayte Souza",    
+        "id":1,
+        "name":"Jugo de frutas natural",
+        "productId":"ABCD12",
+        "price":7,
+        "quantity":0
+
+           
+       
+   },
+   {
+    "nameClient":"Mayte Souza", 
+    "id":2,
+    "name":"Aros de cebolla",
+    "productId":"ABCD34",
+    "price":5,
+    "quantity":0
+
+   },
+   {
+    "nameClient":"Narda Crocco",
+    "id":3,
+    "name":"Sandwich de jamon un queso",
+    "productId":"ABCD56",
+    "price":10,
+    "quantity":0
+  
+    
+},
+{ "nameClient":"Franciree Arellan",
+    "id":4,
+    "name":"Agua 750 ml",
+    "productId":"ABCD78",
+    "price":7,
+    "quantity":0
+
+   }
+]

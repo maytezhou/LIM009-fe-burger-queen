@@ -1,4 +1,5 @@
 import React from "react";
+import Producto from "./Producto";
 
 const Desayuno = ({ agregarProducto,allProducts }) => {
   return (
@@ -12,6 +13,7 @@ const Desayuno = ({ agregarProducto,allProducts }) => {
                   {ele.data().name} ${ele.data().price}{" "}
                   <button
                     onClick={() => {
+                    
                       agregarProducto(ele.data());
                     }}
                   >

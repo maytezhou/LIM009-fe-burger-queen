@@ -1,0 +1,85 @@
+[
+    {
+        "id": 1,
+        "quantity": 1,        
+        "menuType": "desayuno",
+        "name": "Café Americano",
+        "price": 5
+        
+    },{
+        "id": 2,
+        "quantity": 1,        
+        "menuType": "desayuno",
+        "name": "Café con leche",
+        "price": 7
+        
+    },
+    {
+        "id": 3,
+        "quantity": 1,        
+        "menuType": "desayuno",
+        "name": "Sandwich de jamon y queso",
+        "price": 10
+        
+    },
+    {
+        "id": 4,
+        "quantity": 1,        
+        "menuType": "desayuno",
+        "name": "Café con leche",
+        "price": 5
+        
+    },
+    {
+        "id": 5,
+        "quantity": 0,        
+        "menuType": "almuerzoYcena",
+        "name": "Hamburguesa de res",
+        "type": {
+            "doble":{
+                "huevo":{
+                    "id":27,
+                    "name":"Hamburguesa de res simple con huevo",
+                    "price":16
+
+                },
+                "queso":{
+                    "id":26,
+                    "name":"Hamburguesa de res simple con queso",
+                    "price":16
+
+                },
+                "solo":{
+                    "id":25,
+                    "name":"Hamburguesa de res simple",
+                    "price":15
+
+                }
+
+            },
+            "simple":{
+                "huevo":{
+                    "id":16,
+                    "name":"Hamburguesa de res simple con huevo",
+                    "price":11
+
+                },
+                "queso":{
+                    "id":17,
+                    "name":"Hamburguesa de res simple con queso",
+                    "price":11
+
+                },
+                "solo":{
+                    "id":18,
+                    "name":"Hamburguesa de res simple",
+                    "price":10
+
+                }
+
+            }
+        }
+        
+    }
+   
+]
