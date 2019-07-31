@@ -13,34 +13,65 @@ function App() {
     snapshotListenOptions: { includeMetadataChanges: true }
   });
   const [productos, setProductos] = useState([]);
-  const agregarProducto = (obj) => {
-    // const newProductos = [
-    //   ...productos,
-    //   {
-    //     id: obj.id,
-    //     name: obj.name,
-    //     price: obj.price,
-    //     menuType: obj.menuType,
-    //     cantidad: obj.cantidad
-    //   }
-    // ];
-     const newProductos = 
-     productos.map((product)=>{
-
-     })
-    console.log(newProductos);
-    setProductos(newProductos);
+  const agregarProducto = (producto) => {
+    if (
+      productos.find((p) => 
+        p.id === producto.id
+      )
+    ) { // si ya lo pidio
+      const newProductos2 = productos.map((p) => {
+        if (p.id === producto.id) {
+          return { ...p, cantidad: p.cantidad + 1 , costo:p.price *(p.cantidad + 1)  };
+         
+        } else {
+          return p;
+        }
+      });
+      return setProductos(newProductos2);
+    } else { // si lo pide por primera vez 
+      const newProductos = [
+        ...productos,
+        {
+          id: producto.id,
+          name: producto.name,
+          price: producto.price,
+          menuType: producto.menuType,
+          cantidad: producto.cantidad,
+          costo:producto.costo,
+        }
+      ];
+      console.log(newProductos);
+      setProductos(newProductos);
+    }
   };
   const eliminarProducto = (id) => {
     const newProductos = productos.filter((p) => p.id !== id);
     setProductos(newProductos);
   };
+  const disminuirCntd = (producto) => {
+    if (
+      productos.find((p) => 
+        p.id === producto.id
+      )
+    ) { // si ya lo pidio
+      const newProductos2 = productos.map((p) => {
+        if (p.id === producto.id) {
+          return { ...p, cantidad: p.cantidad - 1  < 0 ? 0: p.cantidad - 1, costo:p.price *(p.cantidad - 1) < 0 ? 0 : p.price *(p.cantidad - 1)};
+        } else {
+          return p;
+        }
+      });
+      return setProductos(newProductos2);
+    } 
+  };
+
+ 
   return (
     <div>
       <Nav logo={Logo} />
       <Orden />
       <Menu agregarProducto={agregarProducto} allProducts={allProducts} />
-      <Pedido productos={productos} eliminarProducto={eliminarProducto} />
+      <Pedido productos={productos} eliminarProducto={eliminarProducto} agregarProducto={agregarProducto}  disminuirCntd={disminuirCntd}/>
     </div>
   );
 }
