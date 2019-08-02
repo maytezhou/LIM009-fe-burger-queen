@@ -13,7 +13,8 @@ const Adicional = ({
   optionName,
   agregarProducto,
   nombre,
-  dni
+  dni,
+  cantidad,
 }) => {
   return (
     <>
@@ -27,7 +28,9 @@ const Adicional = ({
               ...product,
               price: precio,
               name: nombre,
-              id: dni
+              id: dni,
+             cantidad:cantidad,
+             costo:precio * cantidad,
             });
           }}
         >
