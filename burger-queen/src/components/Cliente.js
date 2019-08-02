@@ -1,7 +1,7 @@
-import React, {useEffect}from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 
-const Cliente = ({clientName, agregarNombreDelCliente,agregarNumeroDeMesa,numeroDeMesa}) => console.log(clientName,numeroDeMesa) || (
+const Cliente = ({clientName, agregarNombreDelCliente,agregarNumeroDeMesa,numeroDeMesa}) =>  (
   <div>
     <div className="input-group">
       <label type="text">Cliente:</label>

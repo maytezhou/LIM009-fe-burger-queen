@@ -1,16 +1,11 @@
 import React  from "react";
 
-const precioPorCantidad = (precio, cantidad) => {
-  return precio * cantidad;
-};
-const Contador = ({ agregarProducto, producto, disminuirCntd ,eliminarProducto}) => {
-  return (
+const Contador = ({ agregarPedido, producto, disminuirCntd ,eliminarProducto}) => (
     <>
-      <button onClick={() => agregarProducto(producto)}>+</button>
+      <button onClick={() => agregarPedido(producto)}>+</button>
       <p>{producto.cantidad}</p>
 
       <button onClick={ ()=>producto.cantidad <=1 ?eliminarProducto(producto.id) : disminuirCntd(producto)}>-</button>
     </>
-  );
-};
+);
 export default Contador;

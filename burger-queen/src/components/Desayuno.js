@@ -1,6 +1,6 @@
 import React from "react";
 
-const Desayuno = ({ agregarProducto,allProducts }) => {
+const Desayuno = ({ agregarPedido,allProducts }) => {
   return (
     <div data-testid="desayuno">
      {allProducts && (
@@ -12,7 +12,7 @@ const Desayuno = ({ agregarProducto,allProducts }) => {
                   {ele.data().name} ${ele.data().price}{" "}
                   <button
                     onClick={() => {
-                      agregarProducto(ele.data());
+                      agregarPedido(ele.data());
                     }}
                   >
                     Agregar

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as firebase from "firebase";
 import Nav from "./components/Nav";
 import Orden from "./components/Orden";
@@ -10,96 +10,90 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import app from "../src/components/Firebase";
 
 function App() {
-  const [productos, setProductos] = useState([]);
+  const [pedidos, setPedidos] = useState([]);
   const [clientName, setClientName] = useState("");
   const [numeroDeMesa, setTableNumber] = useState("");
+  
   //llamanndo colleccion prodeuctos
   const [allProducts] = useCollection(app.firestore().collection("producto3"), {
     snapshotListenOptions: { includeMetadataChanges: true }
   });
   //llamando colleccion clientes
-  const [allPedidos] = useCollection(app.firestore().collection("clients"), {
-    snapshotListenOptions: { includeMetadataChanges: true }
-  });
+  // const [allPedidos] = useCollection(app.firestore().collection("clients"), {
+  //   snapshotListenOptions: { includeMetadataChanges: true }
+  // });
   const agregarNombreDelCliente = (e) => setClientName(e.target.value);
   const agregarNumeroDeMesa = (e) => setTableNumber(e.target.value);
 
-  const gettingProductsOfSameClient = (arrObj, nameClient) => {
-    const orderBySameClient = arrObj.docs.filter(
-      (orden) => {
-        console.log(orden.data());
-        return orden.data().client === nameClient
-      }
-    );
-    return orderBySameClient;
-  };
-  const gettingTotalCost = (arrProductosSameClient) => {
-    console.log(arrProductosSameClient);
-    return arrProductosSameClient.reduce((accum, obj) => {
-      return accum + obj.data().costo;
+  const gettingTotalCost = (arrPedidos) => {
+    return arrPedidos.reduce((accum, obj) => {
+      return accum + obj.costo;
     }, 0);
   };
 
-  const agregarOrden = (
-    nameClient,
-    numeroDeMesa,
-    productoName,
-    price,
-    costo,
-    cantidad
-  ) => {
-    const db = firebase.firestore();
-    db.collection("clients").add({
-      client: nameClient,
-      id: 3,
-      order: productoName,
-      price,
-      cantidad,
-      costo,
-      mesa: numeroDeMesa
-    });
-  };
-
-  const agregarProducto = (producto) => {
-    if (productos.find((p) => p.id === producto.id)) {
+  const agregarPedido = (producto) => {
+    console.log('aAAAAAAAA');
+    if (pedidos.find((p) => p.id === producto.id)) {
       // si ya lo pidio
-      const newProductos2 = productos.map((p) => {
+      const newProductos2 = pedidos.map((p) => {
         if (p.id === producto.id) {
           return {
             ...p,
             cantidad: p.cantidad + 1,
-            costo: p.price * (p.cantidad + 1)
+            costo: p.price * (p.cantidad + 1),
+          
           };
         } else {
           return p;
         }
       });
-      return setProductos(newProductos2);
+      console.log('aaaaaaaa', newProductos2);
+      // setPedidos(newProductos2);
+      return setPedidos(newProductos2);
     } else {
       // si lo pide por primera vez
       const newProductos = [
-        ...productos,
+        ...pedidos,
         {
           id: producto.id,
           name: producto.name,
           price: producto.price,
           menuType: producto.menuType,
           cantidad: producto.cantidad,
-          costo: producto.costo
+          costo: producto.costo,
+          
         }
       ];
       console.log(newProductos);
-      setProductos(newProductos);
+      // setPedidos(newProductos);
+     return setPedidos(newProductos);
     }
   };
+  console.log(pedidos);
+  const agregarOrdenFirebase = (
+
+   arrPedidos,nameClient,numeroDeMesa
+  ) => {
+    console.log('SUBE A FIREBASE')
+    const db = firebase.firestore();
+    db.collection("clients").add({
+      client: nameClient,
+      order: arrPedidos,
+      mesa:numeroDeMesa,
+
+    });
+    setClientName('');
+    setTableNumber('');
+    setPedidos([]);
+  };
   const eliminarProducto = (id) => {
-    const newProductos = productos.filter((p) => p.id !== id);
-    setProductos(newProductos);
+    const newProductos = pedidos.filter((p) => p.id !== id);
+    return  setPedidos(newProductos);
   };
   const disminuirCntd = (producto) => {
-    if (productos.find((p) => p.id === producto.id)) {
+    if (pedidos.find((p) => p.id === producto.id)) {
       // si ya lo pidio
-      const newProductos2 = productos.map((p) => {
+      const newProductos2 = pedidos.map((p) => {
         if (p.id === producto.id) {
           return {
             ...p,
@@ -111,7 +105,7 @@ function App() {
           return p;
         }
       });
-      return setProductos(newProductos2);
+      return setPedidos(newProductos2);
     }
   };
 
@@ -119,20 +113,19 @@ function App() {
     <div>
       <Nav logo={Logo} />
       <Orden />
-      <Menu agregarProducto={agregarProducto} allProducts={allProducts} />
+      <Menu agregarPedido={agregarPedido} allProducts={allProducts} />
       <Pedido
-        productos={productos}
+        pedidos={pedidos}
         eliminarProducto={eliminarProducto}
-        agregarProducto={agregarProducto}
+        agregarPedido={agregarPedido}
         disminuirCntd={disminuirCntd}
         clientName={clientName}
         agregarNombreDelCliente={agregarNombreDelCliente}
-        agregarOrden={agregarOrden}
+        agregarOrdenFirebase={agregarOrdenFirebase}
         agregarNumeroDeMesa={agregarNumeroDeMesa}
         numeroDeMesa={numeroDeMesa}
-        gettingProductsOfSameClient={gettingProductsOfSameClient}
         gettingTotalCost={gettingTotalCost}
-        allPedidos={allPedidos}
+       
       />
     </div>
   );

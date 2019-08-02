@@ -1,15 +1,7 @@
 import React from "react";
 
-const Total = ({
-  gettingProductsOfSameClient,
-  gettingTotalCost,
-  allPedidos,
-  clientName
-}) =>  console.log(allPedidos) || (
-  <div>
-    total = $
-    {gettingTotalCost(gettingProductsOfSameClient(allPedidos, clientName))}
-  </div>
+const Total = ({ pedidos, gettingTotalCost }) => (
+   <div>total = ${gettingTotalCost(pedidos)}</div>
 );
 
 export default Total;

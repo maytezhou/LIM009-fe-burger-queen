@@ -4,14 +4,14 @@ import Contador from "./Contador";
 const Producto = ({
   producto,
   eliminarProducto,
-  agregarProducto,
+  agregarPedido,
   disminuirCntd
 }) => (
   <tr>
     <td>
       <Contador
         producto={producto}
-        agregarProducto={agregarProducto}
+        agregarPedido={agregarPedido}
         disminuirCntd={disminuirCntd}
         eliminarProducto={eliminarProducto}
       />
