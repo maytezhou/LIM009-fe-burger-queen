@@ -42,6 +42,7 @@ const Almuerzo = ({ allProducts, agregarProducto }) => {
                             product={doc.data()}
                             optionName={"solo"}
                             precio={doc.data().type.simple.solo.price}
+                            cantidad={doc.data().type.simple.solo.cantidad}
                             nombre={doc.data().type.simple.solo.name}
                             dni={doc.data().type.simple.solo.id}
                           />
@@ -49,6 +50,7 @@ const Almuerzo = ({ allProducts, agregarProducto }) => {
                             agregarProducto={agregarProducto}
                             product={doc.data()}
                             optionName={"huevo"}
+                            cantidad={doc.data().type.simple.huevo.cantidad}
                             precio={doc.data().type.simple.huevo.price}
                             nombre={doc.data().type.simple.huevo.name}
                             dni={doc.data().type.simple.huevo.id}
@@ -57,6 +59,7 @@ const Almuerzo = ({ allProducts, agregarProducto }) => {
                             agregarProducto={agregarProducto}
                             product={doc.data()}
                             optionName={"queso"}
+                            cantidad={doc.data().type.simple.queso.cantidad}
                             precio={doc.data().type.simple.queso.price}
                             nombre={doc.data().type.simple.queso.name}
                             dni={doc.data().type.simple.queso.id}
@@ -80,6 +83,7 @@ const Almuerzo = ({ allProducts, agregarProducto }) => {
                             agregarProducto={agregarProducto}
                             product={doc.data()}
                             optionName={"solo"}
+                            cantidad={doc.data().type.doble.solo.cantidad}
                             precio={doc.data().type.doble.solo.price}
                             nombre={doc.data().type.doble.solo.name}
                             dni={doc.data().type.doble.solo.id}
@@ -88,6 +92,7 @@ const Almuerzo = ({ allProducts, agregarProducto }) => {
                             agregarProducto={agregarProducto}
                             product={doc.data()}
                             optionName={"huevo"}
+                            cantidad={doc.data().type.doble.huevo.cantidad}
                             precio={doc.data().type.doble.huevo.price}
                             nombre={doc.data().type.doble.huevo.name}
                             dni={doc.data().type.doble.huevo.id}
@@ -96,6 +101,7 @@ const Almuerzo = ({ allProducts, agregarProducto }) => {
                             agregarProducto={agregarProducto}
                             product={doc.data()}
                             optionName={"queso"}
+                            cantidad={doc.data().type.doble.queso.cantidad}
                             precio={doc.data().type.doble.queso.price}
                             nombre={doc.data().type.doble.queso.name}
                             dni={doc.data().type.doble.queso.id}

@@ -1,13 +1,23 @@
 import React from "react";
 import Contador from "./Contador";
 
-const Producto = ({ producto, eliminarProducto,addOrderToFirebase }) => (
+const Producto = ({
+  producto,
+  eliminarProducto,
+  agregarProducto,
+  disminuirCntd
+}) => (
   <tr>
     <td>
-      <Contador price={producto.price} />
+      <Contador
+        producto={producto}
+        agregarProducto={agregarProducto}
+        disminuirCntd={disminuirCntd}
+        eliminarProducto={eliminarProducto}
+      />
     </td>
     <td>{producto.name}</td>
-    <td>${producto.price}</td>
+    <td>${producto.costo}</td>
     <td>
       <button
         onClick={() => {

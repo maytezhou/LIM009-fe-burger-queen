@@ -1,75 +1,79 @@
 import React from "react";
 
 import Producto from "./Producto";
-import useSignUpForm from './CustomHooks';
+import Total from "./Total";
 
-const Pedido = ({ productos, eliminarProducto , addOrderToFirebase }) => {
-  const {inputs, handleInputChange, handleSubmit} = useSignUpForm();
+const Pedido = ({
+  productos,
+  eliminarProducto,
+  agregarProducto,
+  disminuirCntd,
+  clientName,
+  agregarNombreDelCliente,
+  agregarOrden,
+  agregarNumeroDeMesa,
+  numeroDeMesa,
+  allPedidos,
+  gettingProductsOfSameClient,
+  gettingTotalCost,
+}) => {
   return (
-   
-    <form onSubmit={handleSubmit}  >
-    <div className="card text-white bg-info mb-3" style={{ maxWidth: "50%" }}>
-      <div className="card-header">
-      <div>
-  <div className="input-group">
-    <label type="text">Cliente:</label>
-    <input
-      type="text"
-      name="client"
-      id="client"
-      placeholder="Nombre del cliente"
-      onChange={handleInputChange} 
-      value={inputs.client} required
-      className="form-control"
-      data-testid="client-input"
-      type="text"
-      aria-label="Text input with segmented dropdown button"
-    />
-    <div className="input-group-append">
-      <label type="text">Mesa:</label>
-      <input
-      name="table"
-        type="number"
-        min="0"
-        className="form-control"
-        aria-label="Text input with segmented dropdown button"
-        onChange={handleInputChange} 
-        value={inputs.table} required
-      />
-    </div>
-  </div>
-</div>
-      </div>
-      <div className="card-body">
-        <div>
-          <table className="table">
-            <thead className="thead-dark">
-              <tr>
-                <th scope="col">Cantidad</th>
-                <th scope="col">Producto</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Eliminar</th>
-              </tr>
-            </thead>
-            <tbody>
-              {productos.map((p) => (
-                <Producto
-                  key={p.id}
-                  producto={p}
-                  eliminarProducto={eliminarProducto}
-                  addOrderToFirebase={addOrderToFirebase}
-                  
-                
-                />
-              ))}
-            </tbody>
-          </table>
-          <button type="submit">Enviar a cocina</button>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        let numberTable = parseInt(numeroDeMesa);
+        {
+          productos.map((producto) => {
+            let productoName = producto.name;
+            let price = producto.price;
+            let costo = producto.costo;
+            let cantidad = producto.cantidad;
+
+            agregarOrden(clientName, numberTable,productoName,price,costo,cantidad);
+          });
+        }
+      }}
+    >
+      <div className="card text-white bg-info mb-3" style={{ maxWidth: "50%" }}>
+        <div className="card-header">
+          <Cliente
+            clientName={clientName}
+            agregarNombreDelCliente={agregarNombreDelCliente}
+            agregarOrden={agregarOrden}
+            agregarNumeroDeMesa={agregarNumeroDeMesa}
+            numeroDeMesa={numeroDeMesa}
+          />
+        </div>
+        <div className="card-body">
+          <div>
+            <table className="table">
+              <thead className="thead-dark">
+                <tr>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Producto</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Eliminar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {productos.map((p) => (
+                  <Producto
+                    key={p.id}
+                    producto={p}
+                    eliminarProducto={eliminarProducto}
+                    agregarProducto={agregarProducto}
+                    disminuirCntd={disminuirCntd}
+                  />
+                ))}
+                {productos.length === 0 ? "" : <Total  allPedidos={allPedidos} gettingProductsOfSameClient={gettingProductsOfSameClient}
+        gettingTotalCost={gettingTotalCost} clientName={clientName}/>}
+              </tbody>
+            </table>
+            <button type="submit">Enviar a cocina</button>
+          </div>
         </div>
       </div>
-    </div>
     </form>
-  
   );
 };
 export default Pedido;

@@ -1,23 +1,15 @@
-import React, { useState } from "react";
+import React  from "react";
 
 const precioPorCantidad = (precio, cantidad) => {
   return precio * cantidad;
 };
-const Contador = ({precio}) => {
-  const [count, setCount] = useState(1);
-  
+const Contador = ({ agregarProducto, producto, disminuirCntd ,eliminarProducto}) => {
   return (
     <>
-      <button onClick={() => setCount((prevCount) => prevCount + 1)}>+</button>
-      <p>{count}</p>
-      
-      <button
-        onClick={() =>
-          setCount((prevCount) => (prevCount - 1 < 1 ? 1 : prevCount - 1))
-        }
-      >
-        -
-      </button>
+      <button onClick={() => agregarProducto(producto)}>+</button>
+      <p>{producto.cantidad}</p>
+
+      <button onClick={ ()=>producto.cantidad <=1 ?eliminarProducto(producto.id) : disminuirCntd(producto)}>-</button>
     </>
   );
 };
