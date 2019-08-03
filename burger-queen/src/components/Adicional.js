@@ -11,7 +11,7 @@ const Adicional = ({
   product,
   precio,
   optionName,
-  agregarProducto,
+  agregarPedido,
   nombre,
   dni,
   cantidad,
@@ -24,7 +24,7 @@ const Adicional = ({
         <button
           onClick={() => {
             //agregarProducto(transformToStandar(product, precio));
-            agregarProducto({
+            agregarPedido({
               ...product,
               price: precio,
               name: nombre,

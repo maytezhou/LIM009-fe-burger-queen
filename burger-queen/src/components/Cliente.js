@@ -10,25 +10,14 @@ const Cliente = ({clientName, agregarNombreDelCliente,agregarNumeroDeMesa,numero
       name="client"
       id="client"
       placeholder="Nombre del cliente"
-      onChange={handleInputChange} 
-      value={inputs.client} required
+      onChange={agregarNombreDelCliente} 
+      value={clientName} required
       className="form-control"
       data-testid="client-input"
       type="text"
       aria-label="Text input with segmented dropdown button"
     />
-    <div className="input-group-append">
-      <label type="text">Mesa:</label>
-      <input
-      name="table"
-        type="number"
-        min="0"
-        className="form-control"
-        aria-label="Text input with segmented dropdown button"
-        onChange={agregarNombreDelCliente}
-        value={clientName}
-      />
-      <div className="input-group-append">
+  <div className="input-group-append">
         <label type="text">Mesa:</label>
         <input
           type="number"
@@ -41,7 +30,7 @@ const Cliente = ({clientName, agregarNombreDelCliente,agregarNumeroDeMesa,numero
       </div>
     </div>
   </div>
-</div>
+
 );
 export default Cliente;
 Cliente.propTypes={
