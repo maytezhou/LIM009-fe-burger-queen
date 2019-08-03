@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Adicional from "./Adicional";
 
-const Almuerzo = ({ allProducts, agregarProducto }) => {
+const Almuerzo = ({ allProducts, agregarPedido }) => {
   const [tipo, setTipo] = useState("");
   const [simple, setSimple] = useState(null);
   const [doble, setDoble] = useState(null);
@@ -38,7 +38,7 @@ const Almuerzo = ({ allProducts, agregarProducto }) => {
                       {simple && (
                         <>
                           <Adicional
-                            agregarProducto={agregarProducto}
+                            agregarPedido={agregarPedido}
                             product={doc.data()}
                             optionName={"solo"}
                             precio={doc.data().type.simple.solo.price}
@@ -47,7 +47,7 @@ const Almuerzo = ({ allProducts, agregarProducto }) => {
                             dni={doc.data().type.simple.solo.id}
                           />
                           <Adicional
-                            agregarProducto={agregarProducto}
+                            agregarPedido={agregarPedido}
                             product={doc.data()}
                             optionName={"huevo"}
                             cantidad={doc.data().type.simple.huevo.cantidad}
@@ -56,7 +56,7 @@ const Almuerzo = ({ allProducts, agregarProducto }) => {
                             dni={doc.data().type.simple.huevo.id}
                           />
                           <Adicional
-                            agregarProducto={agregarProducto}
+                            agregarPedido={agregarPedido}
                             product={doc.data()}
                             optionName={"queso"}
                             cantidad={doc.data().type.simple.queso.cantidad}
@@ -80,7 +80,7 @@ const Almuerzo = ({ allProducts, agregarProducto }) => {
                       {doble && (
                         <>
                           <Adicional
-                            agregarProducto={agregarProducto}
+                            agregarPedido={agregarPedido}
                             product={doc.data()}
                             optionName={"solo"}
                             cantidad={doc.data().type.doble.solo.cantidad}
@@ -89,7 +89,7 @@ const Almuerzo = ({ allProducts, agregarProducto }) => {
                             dni={doc.data().type.doble.solo.id}
                           />
                           <Adicional
-                            agregarProducto={agregarProducto}
+                            agregarPedido={agregarPedido}
                             product={doc.data()}
                             optionName={"huevo"}
                             cantidad={doc.data().type.doble.huevo.cantidad}
@@ -98,7 +98,7 @@ const Almuerzo = ({ allProducts, agregarProducto }) => {
                             dni={doc.data().type.doble.huevo.id}
                           />
                           <Adicional
-                            agregarProducto={agregarProducto}
+                            agregarPedido={agregarPedido}
                             product={doc.data()}
                             optionName={"queso"}
                             cantidad={doc.data().type.doble.queso.cantidad}

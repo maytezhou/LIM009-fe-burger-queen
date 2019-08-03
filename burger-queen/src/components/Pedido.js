@@ -4,34 +4,24 @@ import Producto from "./Producto";
 import Total from "./Total";
 
 const Pedido = ({
-  productos,
+  pedidos,
   eliminarProducto,
-  agregarProducto,
+  agregarPedido,
   disminuirCntd,
   clientName,
   agregarNombreDelCliente,
-  agregarOrden,
+  agregarOrdenFirebase,
   agregarNumeroDeMesa,
   numeroDeMesa,
-  allPedidos,
-  gettingProductsOfSameClient,
-  gettingTotalCost,
+  gettingTotalCost
 }) => {
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
         let numberTable = parseInt(numeroDeMesa);
-        {
-          productos.map((producto) => {
-            let productoName = producto.name;
-            let price = producto.price;
-            let costo = producto.costo;
-            let cantidad = producto.cantidad;
-
-            agregarOrden(clientName, numberTable,productoName,price,costo,cantidad);
-          });
-        }
+        console.log('ESTO ES PEDIDOS ANTES DE SUBIRSE',pedidos);
+        agregarOrdenFirebase(pedidos, clientName, numberTable);
       }}
     >
       <div className="card text-white bg-info mb-3" style={{ maxWidth: "50%" }}>
@@ -39,7 +29,6 @@ const Pedido = ({
           <Cliente
             clientName={clientName}
             agregarNombreDelCliente={agregarNombreDelCliente}
-            agregarOrden={agregarOrden}
             agregarNumeroDeMesa={agregarNumeroDeMesa}
             numeroDeMesa={numeroDeMesa}
           />
@@ -56,20 +45,31 @@ const Pedido = ({
                 </tr>
               </thead>
               <tbody>
-                {productos.map((p) => (
+                {pedidos.map((p) => (
                   <Producto
                     key={p.id}
                     producto={p}
                     eliminarProducto={eliminarProducto}
-                    agregarProducto={agregarProducto}
+                    agregarPedido={agregarPedido}
                     disminuirCntd={disminuirCntd}
                   />
                 ))}
-                {productos.length === 0 ? "" : <Total  allPedidos={allPedidos} gettingProductsOfSameClient={gettingProductsOfSameClient}
-        gettingTotalCost={gettingTotalCost} clientName={clientName}/>}
+                {pedidos.length === 0 ? (
+                  ""
+                ) : (
+                  <Total
+                    pedidos={pedidos}
+                    gettingTotalCost={gettingTotalCost}
+                    clientName={clientName}
+                  />
+                )}
               </tbody>
             </table>
-            <button type="submit">Enviar a cocina</button>
+            {pedidos.length >= 1 && clientName !== "" && numeroDeMesa !== "" ? (
+              <button type="submit">Enviar a cocina</button>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
