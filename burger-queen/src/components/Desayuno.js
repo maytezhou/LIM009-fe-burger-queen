@@ -11,6 +11,7 @@ const Desayuno = ({ agregarPedido,allProducts }) => {
               ele.data().menuType === "desayuno" && (
                 <div key={ele.data().id}>
                   {ele.data().name} ${ele.data().price}{" "}
+                  <img src={ele.data().img}></img>
                   <button
                     onClick={() => {
                       agregarPedido(ele.data());

@@ -44,6 +44,7 @@ const Almuerzo = ({ allProducts, agregarPedido }) => {
                             precio={doc.data().type.simple.solo.price}
                             cantidad={doc.data().type.simple.solo.cantidad}
                             nombre={doc.data().type.simple.solo.name}
+                            imagen={doc.data().type.simple.solo.img}
                             dni={doc.data().type.simple.solo.id}
                           />
                           <Adicional
@@ -53,6 +54,7 @@ const Almuerzo = ({ allProducts, agregarPedido }) => {
                             cantidad={doc.data().type.simple.huevo.cantidad}
                             precio={doc.data().type.simple.huevo.price}
                             nombre={doc.data().type.simple.huevo.name}
+                            imagen={doc.data().type.simple.huevo.img}
                             dni={doc.data().type.simple.huevo.id}
                           />
                           <Adicional
@@ -62,6 +64,7 @@ const Almuerzo = ({ allProducts, agregarPedido }) => {
                             cantidad={doc.data().type.simple.queso.cantidad}
                             precio={doc.data().type.simple.queso.price}
                             nombre={doc.data().type.simple.queso.name}
+                            imagen={doc.data().type.simple.queso.img}
                             dni={doc.data().type.simple.queso.id}
                           />
                         </>
@@ -86,6 +89,7 @@ const Almuerzo = ({ allProducts, agregarPedido }) => {
                             cantidad={doc.data().type.doble.solo.cantidad}
                             precio={doc.data().type.doble.solo.price}
                             nombre={doc.data().type.doble.solo.name}
+                            imagen={doc.data().type.doble.solo.img}
                             dni={doc.data().type.doble.solo.id}
                           />
                           <Adicional
@@ -95,6 +99,7 @@ const Almuerzo = ({ allProducts, agregarPedido }) => {
                             cantidad={doc.data().type.doble.huevo.cantidad}
                             precio={doc.data().type.doble.huevo.price}
                             nombre={doc.data().type.doble.huevo.name}
+                            imagen={doc.data().type.doble.huevo.img}
                             dni={doc.data().type.doble.huevo.id}
                           />
                           <Adicional
@@ -104,6 +109,7 @@ const Almuerzo = ({ allProducts, agregarPedido }) => {
                             cantidad={doc.data().type.doble.queso.cantidad}
                             precio={doc.data().type.doble.queso.price}
                             nombre={doc.data().type.doble.queso.name}
+                            imagen={doc.data().type.doble.queso.img}
                             dni={doc.data().type.doble.queso.id}
                           />
                         </>
