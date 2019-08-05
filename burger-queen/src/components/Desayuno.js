@@ -1,4 +1,5 @@
 import React from "react";
+import Producto from "./Producto";
 
 const Desayuno = ({ agregarPedido,allProducts }) => {
   return (

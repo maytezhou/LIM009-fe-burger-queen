@@ -8,6 +8,8 @@ import Pedido from "./components/Pedido";
 import Logo from "./img/logoBq.png";
 import { useCollection } from "react-firebase-hooks/firestore";
 import app from "../src/components/Firebase";
+import axios from 'axios';
+
 
 function App() {
   const [pedidos, setPedidos] = useState([]);
