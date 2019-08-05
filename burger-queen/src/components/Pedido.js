@@ -1,5 +1,5 @@
 import React from "react";
-import Cliente from "./Cliente";
+import Cliente from './Cliente';
 import Producto from "./Producto";
 import Total from "./Total";
 
