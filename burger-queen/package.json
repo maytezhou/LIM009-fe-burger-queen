@@ -1,6 +1,6 @@
 {
     "name": "burger-queen",
-    "homepage": "https://maytezhou.github.io/LIM009-fe-burger-queen",
+    "homepage": "https://NardaC.github.io/LIM009-fe-burger-queen",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -36,6 +36,7 @@
     },
     "devDependencies": {
         "@testing-library/jest-dom": "^4.0.0",
-        "@testing-library/react": "^8.0.6"
+        "@testing-library/react": "^8.0.6",
+        "gh-pages": "^2.0.1"
     }
 }

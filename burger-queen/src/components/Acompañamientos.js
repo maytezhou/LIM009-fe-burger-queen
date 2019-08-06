@@ -10,6 +10,7 @@ const Acompañamientos = ({ allProducts, agregarPedido }) => {
               ele.data().menuType === "acompañamiento" && (
                 <div key={ele.data().id}>
                   {ele.data().name} ${ele.data().price}{" "}
+                  <img src={ele.data().img}></img>
                   <button
                     onClick={() => {
                       agregarPedido(ele.data());

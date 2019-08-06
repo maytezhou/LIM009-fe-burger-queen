@@ -9,7 +9,6 @@ const Cliente = ({clientName, agregarNombreDelCliente,agregarNumeroDeMesa,numero
       type="text"
       name="client"
       id="client"
-      placeholder="Nombre del cliente"
       onChange={agregarNombreDelCliente} 
       value={clientName} required
       className="form-control"

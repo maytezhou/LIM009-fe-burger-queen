@@ -13,6 +13,7 @@ const Adicional = ({
   optionName,
   agregarPedido,
   nombre,
+  imagen,
   dni,
   cantidad,
 }) => {
@@ -21,6 +22,7 @@ const Adicional = ({
       <div>
         {" "}
         {optionName} ${precio}
+        {/* <img src={imagen}></img> */}
         <button
           onClick={() => {
             //agregarProducto(transformToStandar(product, precio));
@@ -31,6 +33,7 @@ const Adicional = ({
               id: dni,
              cantidad:cantidad,
              costo:precio * cantidad,
+             
             });
           }}
         >

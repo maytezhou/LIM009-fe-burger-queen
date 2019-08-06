@@ -8,7 +8,6 @@ import Pedido from "./components/Pedido";
 import Logo from "./img/logoBq.png";
 import { useCollection } from "react-firebase-hooks/firestore";
 import app from "../src/components/Firebase";
-import axios from 'axios';
 
 
 function App() {
@@ -34,7 +33,7 @@ function App() {
   };
 
   const agregarPedido = (producto) => {
-    console.log('aAAAAAAAA');
+    console.log('SOLO SE AGREGO EL PEDIDO');
     if (pedidos.find((p) => p.id === producto.id)) {
       // si ya lo pidio
       const newProductos2 = pedidos.map((p) => {
@@ -49,7 +48,7 @@ function App() {
           return p;
         }
       });
-      console.log('aaaaaaaa', newProductos2);
+      //console.log('aaaaaaaa', newProductos2);
       // setPedidos(newProductos2);
       return setPedidos(newProductos2);
     } else {
@@ -73,10 +72,9 @@ function App() {
   };
   console.log(pedidos);
   const agregarOrdenFirebase = (
-
    arrPedidos,nameClient,numeroDeMesa
   ) => {
-    console.log('SUBE A FIREBASE')
+    console.log('SE SUBIO A FIREBASE')
     const db = firebase.firestore();
     db.collection("clients").add({
       client: nameClient,
