@@ -22,7 +22,7 @@ const Almuerzo = ({ allProducts, agregarPedido }) => {
                       ...state, // copia las propiedades  y su valores  anteriores  del estado ( la primera vez es el estado inicial)
                       hamburgerType:null, // como hamburgerType es una estado que comparten los tres tipos de hamburguesas (res,pollo y vegetariana)
                                           // cada vez que la persona hace click en otra opcion diferente a la clickeada anteriormente 
-                                          // se necesita reiniciar el valor de la propiedad hamburguerType para que los botones siples o dobles no esten clickeados
+                                          // se necesita reiniciar el valor de la propiedad hamburguerType para que los botones simple o doble no esten clickeados
                       tipo: doc.data().name // actualiza el valor de la propiedad tipo con ( un string )
                                            //   el nombre de cada tipo de hamburguesa ya sea Hamburguesa de res/de pollo/vegetariana
                     });
@@ -33,13 +33,13 @@ const Almuerzo = ({ allProducts, agregarPedido }) => {
                 />
                 <label htmlFor="gridCheckRes">{doc.data().name}</label>
                 {state.tipo === doc.data().name && ( // si el tipo de hamburguesa que selecciono el usuario (guardada previamente en el estado) es igual al tipo de hamburguesa  (de res/de pollo/ vegetariana)
-                                                    //  disponible (firebase) entonces que renderize los dos botones simple y doble
+                                                    //  disponible ( en firebase) entonces que renderize los dos botones simple y doble
                   <>
                     <div>
                       <button
                         type="button"
                         className="btn btn-success"
-                        onClick={() => { // si la persona  hace click en simple entonces 
+                        onClick={() => { // si la persona  hace click en  el boton simple entonces 
                           setState((state) => ({
                             ...state,// que copie las propiedades anteriores del estado // para saber cual de los 3 tipos  de hamburguesa fue seleccionada 
                             hamburgerType: 'simple',             // que actualice el valor de     hamburguer Type  a simple         
@@ -65,7 +65,7 @@ const Almuerzo = ({ allProducts, agregarPedido }) => {
                       <button
                         type="button"
                         className="btn btn-success"
-                        onClick={() => {// si la persona  hace click en doble entonces 
+                        onClick={() => {// si la persona  hace click en  el boton doble entonces 
                           setState((state) => ({
                            ...state,// que copie las propiedades anteriores del estado // para saber cual de los 3 tipos  de hamburguesa fue seleccionada 
                             hamburgerType: 'doble',       // que actualice el valor de     hamburguer Type  a doble 
