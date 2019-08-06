@@ -16,7 +16,10 @@ const Almuerzo = ({ allProducts, agregarPedido }) => {
               <div key={doc.data().id}>
                 <input
                   onClick={() => {
+                    setSimple(null);
+                    setDoble(null);
                     setTipo(doc.data().name);
+                   
                   }}
                   type="radio"
                   id="gridCheckRes"
