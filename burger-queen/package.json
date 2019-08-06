@@ -1,6 +1,6 @@
 {
     "name": "burger-queen",
-    "homepage": "https://NardaC.github.io/LIM009-fe-burger-queen",
+    "homepage": "https://maytezhou.github.io/LIM009-fe-burger-queen",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -13,11 +13,12 @@
     },
     "scripts": {
         "start": "react-scripts start",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "predeploy": "npm run build",
-        "deploy": "gh-pages -d build"
+        "eject": "react-scripts eject"
+       
     },
     "eslintConfig": {
         "extends": "react-app"
@@ -37,6 +38,6 @@
     "devDependencies": {
         "@testing-library/jest-dom": "^4.0.0",
         "@testing-library/react": "^8.0.6",
-        "gh-pages": "^2.0.1"
+        "gh-pages": "^2.1.0"
     }
 }
