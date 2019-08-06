@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import Adicional from "./Adicional";
 
 const Almuerzo = ({ allProducts, agregarPedido }) => {
-  const [tipo, setTipo] = useState("");
-  const [simple, setSimple] = useState(null);
-  const [doble, setDoble] = useState(null);
+  const [state, setState] = useState({
+    simple: null,
+    doble: null,
+    tipo: null
+  });
+  // const [simple, setSimple] = useState(null);
+  // const [doble, setDoble] = useState(null);
 
   return (
     <div>
@@ -16,26 +20,33 @@ const Almuerzo = ({ allProducts, agregarPedido }) => {
               <div key={doc.data().id}>
                 <input
                   onClick={() => {
-                    setTipo(doc.data().name);
+                    setState({
+                      simple: null,
+                      doble: null,
+                      tipo: doc.data().name
+                    });
                   }}
                   type="radio"
                   id="gridCheckRes"
                   name="hamburguesas"
                 />
                 <label htmlFor="gridCheckRes">{doc.data().name}</label>
-                {tipo === doc.data().name && (
+                {state.tipo === doc.data().name && (
                   <>
                     <div>
                       <button
                         type="button"
                         className="btn btn-success"
                         onClick={() => {
-                          setSimple(doc.data().type.simple);
+                          setState((state) => ({
+                            ...state,
+                            simple: doc.data().type.simple
+                          }));
                         }}
                       >
                         Simple $ 10
                       </button>
-                      {simple && (
+                      {state.simple && (
                         <>
                           <Adicional
                             agregarPedido={agregarPedido}
@@ -75,12 +86,15 @@ const Almuerzo = ({ allProducts, agregarPedido }) => {
                         type="button"
                         className="btn btn-success"
                         onClick={() => {
-                          setDoble(doc.data().type.doble);
+                          setState((state) => ({
+                            ...state,
+                            doble: doc.data().type.doble
+                          }));
                         }}
                       >
                         Doble $15
                       </button>
-                      {doble && (
+                      {state.doble && (
                         <>
                           <Adicional
                             agregarPedido={agregarPedido}
