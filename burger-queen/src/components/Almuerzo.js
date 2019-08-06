@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import Adicional from "./Adicional";
 
 const Almuerzo = ({ allProducts, agregarPedido }) => {
+ 
   const [state, setState] = useState({
-    simple: null,
-    doble: null,
-    tipo: null
+    hamburgerType: null, //  los dos tipos ya sea simple o doble 
+    tipo: null //los tres tipos de hamburguesas que existen res,pollo,vegetariana
   });
-  // const [simple, setSimple] = useState(null);
-  // const [doble, setDoble] = useState(null);
-
+ 
   return (
     <div>
       {allProducts && (
@@ -21,9 +19,12 @@ const Almuerzo = ({ allProducts, agregarPedido }) => {
                 <input
                   onClick={() => {
                     setState({
-                      simple: null,
-                      doble: null,
-                      tipo: doc.data().name
+                      ...state, // copia las propiedades  y su valores  anteriores  del estado ( la primera vez es el estado inicial)
+                      hamburgerType:null, // como hamburgerType es una estado que comparten los tres tipos de hamburguesas (res,pollo y vegetariana)
+                                          // cada vez que la persona hace click en otra opcion diferente a la clickeada anteriormente 
+                                          // se necesita reiniciar el valor de la propiedad hamburguerType para que los botones simple o doble no esten clickeados
+                      tipo: doc.data().name // actualiza el valor de la propiedad tipo con ( un string )
+                                           //   el nombre de cada tipo de hamburguesa ya sea Hamburguesa de res/de pollo/vegetariana
                     });
                   }}
                   type="radio"
@@ -31,103 +32,61 @@ const Almuerzo = ({ allProducts, agregarPedido }) => {
                   name="hamburguesas"
                 />
                 <label htmlFor="gridCheckRes">{doc.data().name}</label>
-                {state.tipo === doc.data().name && (
+                {state.tipo === doc.data().name && ( // si el tipo de hamburguesa que selecciono el usuario (guardada previamente en el estado) es igual al tipo de hamburguesa  (de res/de pollo/ vegetariana)
+                                                    //  disponible ( en firebase) entonces que renderize los dos botones simple y doble
                   <>
                     <div>
                       <button
                         type="button"
                         className="btn btn-success"
-                        onClick={() => {
+                        onClick={() => { // si la persona  hace click en  el boton simple entonces 
                           setState((state) => ({
-                            ...state,
-                            simple: doc.data().type.simple
+                            ...state,// que copie las propiedades anteriores del estado // para saber cual de los 3 tipos  de hamburguesa fue seleccionada 
+                            hamburgerType: 'simple',             // que actualice el valor de     hamburguer Type  a simple         
                           }));
                         }}
                       >
                         Simple $ 10
                       </button>
-                      {state.simple && (
-                        <>
-                          <Adicional
+                      // si el  tipo de hamburguesa seleccionada es igual a simple entonces que  renderize  las opciones solo,queso,huevo del objeto simple
+                        {state.hamburgerType==='simple' &&(['solo', 'huevo', 'queso'].map((item) => 
+                       <Adicional
                             agregarPedido={agregarPedido}
                             product={doc.data()}
-                            optionName={"solo"}
-                            precio={doc.data().type.simple.solo.price}
-                            cantidad={doc.data().type.simple.solo.cantidad}
-                            nombre={doc.data().type.simple.solo.name}
-                            imagen={doc.data().type.simple.solo.img}
-                            dni={doc.data().type.simple.solo.id}
-                          />
-                          <Adicional
-                            agregarPedido={agregarPedido}
-                            product={doc.data()}
-                            optionName={"huevo"}
-                            cantidad={doc.data().type.simple.huevo.cantidad}
-                            precio={doc.data().type.simple.huevo.price}
-                            nombre={doc.data().type.simple.huevo.name}
-                            imagen={doc.data().type.simple.huevo.img}
-                            dni={doc.data().type.simple.huevo.id}
-                          />
-                          <Adicional
-                            agregarPedido={agregarPedido}
-                            product={doc.data()}
-                            optionName={"queso"}
-                            cantidad={doc.data().type.simple.queso.cantidad}
-                            precio={doc.data().type.simple.queso.price}
-                            nombre={doc.data().type.simple.queso.name}
-                            imagen={doc.data().type.simple.queso.img}
-                            dni={doc.data().type.simple.queso.id}
-                          />
-                        </>
-                      )}
+                            optionName={item}
+                            precio={doc.data().type[state.hamburgerType][item].price}
+                            cantidad={doc.data().type[state.hamburgerType][item].cantidad}
+                            nombre={doc.data().type[state.hamburgerType][item].name}
+                            imagen={doc.data().type[state.hamburgerType][item].img}
+                            dni={doc.data().type[state.hamburgerType][item].id}
+                          />))}
                     </div>
                     <div>
                       <button
                         type="button"
                         className="btn btn-success"
-                        onClick={() => {
+                        onClick={() => {// si la persona  hace click en  el boton doble entonces 
                           setState((state) => ({
-                            ...state,
-                            doble: doc.data().type.doble
+                           ...state,// que copie las propiedades anteriores del estado // para saber cual de los 3 tipos  de hamburguesa fue seleccionada 
+                            hamburgerType: 'doble',       // que actualice el valor de     hamburguer Type  a doble 
+                          
                           }));
                         }}
                       >
                         Doble $15
                       </button>
-                      {state.doble && (
-                        <>
+                      // si el  tipo de hamburguesa seleccionada es igual a doble entonces que  renderize  las opciones solo,queso,huevo del objeto doble
+                      {state.hamburgerType ==='doble' &&(['solo', 'huevo', 'queso'].map((item) => 
                           <Adicional
                             agregarPedido={agregarPedido}
                             product={doc.data()}
-                            optionName={"solo"}
-                            cantidad={doc.data().type.doble.solo.cantidad}
-                            precio={doc.data().type.doble.solo.price}
-                            nombre={doc.data().type.doble.solo.name}
-                            imagen={doc.data().type.doble.solo.img}
-                            dni={doc.data().type.doble.solo.id}
-                          />
-                          <Adicional
-                            agregarPedido={agregarPedido}
-                            product={doc.data()}
-                            optionName={"huevo"}
-                            cantidad={doc.data().type.doble.huevo.cantidad}
-                            precio={doc.data().type.doble.huevo.price}
-                            nombre={doc.data().type.doble.huevo.name}
-                            imagen={doc.data().type.doble.huevo.img}
-                            dni={doc.data().type.doble.huevo.id}
-                          />
-                          <Adicional
-                            agregarPedido={agregarPedido}
-                            product={doc.data()}
-                            optionName={"queso"}
-                            cantidad={doc.data().type.doble.queso.cantidad}
-                            precio={doc.data().type.doble.queso.price}
-                            nombre={doc.data().type.doble.queso.name}
-                            imagen={doc.data().type.doble.queso.img}
-                            dni={doc.data().type.doble.queso.id}
-                          />
-                        </>
-                      )}
+                            optionName={item}
+                            cantidad={doc.data().type[state.hamburgerType][item].cantidad}
+                            precio={doc.data().type[state.hamburgerType][item].price}
+                            nombre={doc.data().type[state.hamburgerType][item].name}
+                            imagen={doc.data().type[state.hamburgerType][item].img}
+                            dni={doc.data().type[state.hamburgerType][item].id}
+                          />))}
                     </div>
                   </>
                 )}
