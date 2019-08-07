@@ -1,11 +1,35 @@
-import React  from "react";
+import React from "react";
 
-const Contador = ({ agregarPedido, producto, disminuirCntd ,eliminarProducto}) => (
-    <>
-      <button type="button" onClick={() => agregarPedido(producto)}>+</button>
-      <p>{producto.cantidad}</p>
+const Contador = ({
+  agregarPedido,
+  producto,
+  disminuirCntd,
+  eliminarProducto,
+  pedidos,
+  setPedidos,
+}) => (
+  <>
+    <button
+      type="button"
+      onClick={() => {
+        // agregarPedido(producto, pedidos);
+        setPedidos(agregarPedido(producto,pedidos));
+      }}
+    >
+      +
+    </button>
+    <p>{producto.cantidad}</p>
 
-      <button type="button" onClick={ ()=>producto.cantidad <=1 ?eliminarProducto(producto.id) : disminuirCntd(producto)}>-</button>
-    </>
+    <button
+      type="button"
+      onClick={() =>
+        producto.cantidad <= 1
+          ? setPedidos(eliminarProducto(producto.id, pedidos))
+          : setPedidos(disminuirCntd(producto, pedidos))
+      }
+    >
+      -
+    </button>
+  </>
 );
 export default Contador;

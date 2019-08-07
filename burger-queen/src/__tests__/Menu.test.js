@@ -20,7 +20,7 @@ it("inserts", async () => {
   });
   // expect(getByTestId('imgLogo')).toHaveClass('center');
   // expect(getByAltText('logo')).toHaveAttribute('alt', expect.stringContaining('logo'));
-  expect(desayunoElement.textContent).toBe("Collection: Loading...");
+  expect(desayunoElement.textContent).toBe("Café con leche");
 
   const desayunoProductos = await waitForElement(() => {
     return getByTestId("desayuno-productos");

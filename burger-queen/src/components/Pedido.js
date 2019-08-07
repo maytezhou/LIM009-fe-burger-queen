@@ -13,7 +13,8 @@ const Pedido = ({
   agregarOrdenFirebase,
   agregarNumeroDeMesa,
   numeroDeMesa,
-  gettingTotalCost
+  gettingTotalCost,
+  setPedidos,
 }) => {
   return (
     <form
@@ -52,6 +53,8 @@ const Pedido = ({
                     eliminarProducto={eliminarProducto}
                     agregarPedido={agregarPedido}
                     disminuirCntd={disminuirCntd}
+                    pedidos={pedidos}
+                    setPedidos={setPedidos}
                   />
                 ))}
                 {pedidos.length === 0 ? (

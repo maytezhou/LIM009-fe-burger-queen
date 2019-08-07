@@ -4,7 +4,7 @@ import Almuerzo from "./Almuerzo";
 import Acompañamientos from "./Acompa\u00F1amientos";
 import Bebidas from "./Bebidas";
 
-const Menu = ({ agregarPedido, allProducts }) => {
+const Menu = ({ agregarPedido, allProducts, pedidos, setPedidos }) => {
   const [tipo, setTipo] = useState("desayuno");
   return (
     <>
@@ -49,12 +49,22 @@ const Menu = ({ agregarPedido, allProducts }) => {
       <div data-testid="content">
         {tipo === "desayuno" && (
           <div>
-            <Desayuno agregarPedido={agregarPedido} allProducts={allProducts} />
+            <Desayuno
+              agregarPedido={agregarPedido}
+              allProducts={allProducts}
+              pedidos={pedidos}
+              setPedidos={setPedidos}
+            />
           </div>
         )}
         {tipo === "almuerzo" && (
           <div>
-            <Almuerzo agregarPedido={agregarPedido} allProducts={allProducts} />
+            <Almuerzo
+              agregarPedido={agregarPedido}
+              allProducts={allProducts}
+              pedidos={pedidos}
+              setPedidos={setPedidos}
+            />
           </div>
         )}
         {tipo === "acompañamiento" && (
@@ -62,12 +72,19 @@ const Menu = ({ agregarPedido, allProducts }) => {
             <Acompañamientos
               agregarPedido={agregarPedido}
               allProducts={allProducts}
+              pedidos={pedidos}
+              setPedidos={setPedidos}
             />
           </div>
         )}
         {tipo === "bebidas" && (
           <div>
-            <Bebidas agregarPedido={agregarPedido} allProducts={allProducts} />
+            <Bebidas
+              agregarPedido={agregarPedido}
+              allProducts={allProducts}
+              pedidos={pedidos}
+              setPedidos={setPedidos}
+            />
           </div>
         )}
       </div>

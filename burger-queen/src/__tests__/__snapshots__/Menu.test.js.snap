@@ -34,11 +34,7 @@ exports[`renders 1`] = `
     <div>
       <div
         data-testid="desayuno"
-      >
-        <span>
-          Collection: Loading...
-        </span>
-      </div>
+      />
     </div>
   </div>
 </DocumentFragment>

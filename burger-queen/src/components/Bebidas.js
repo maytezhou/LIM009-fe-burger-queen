@@ -8,15 +8,19 @@ const Bebidas = ({ allProducts, agregarPedido }) => {
           {allProducts.docs.map(
             (ele) =>
               ele.data().menuType === "bebidas" && (
-                <div key={ele.data().id}>
-                  {ele.data().name} ${ele.data().price}{" "}
-                  <button
+                <div key={ele.data().id} className="card text-center" style={{ maxWidth: "40%" }}>
+                <div className="card-body">
+                <h5>{ele.data().name} ${ele.data().price}{" "}</h5>
+                  <img src={ele.data().img}></img>
+                  <button className="btn btn-primary"
                     onClick={() => {
                       agregarPedido(ele.data());
                     }}
                   >
                     Agregar{" "}
                   </button>
+                </div>
+                 
                 </div>
               )
           )}

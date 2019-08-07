@@ -5,7 +5,9 @@ const Producto = ({
   producto,
   eliminarProducto,
   agregarPedido,
-  disminuirCntd
+  disminuirCntd,
+  pedidos,
+  setPedidos,
 }) => (
   <tr>
     <td>
@@ -14,6 +16,8 @@ const Producto = ({
         agregarPedido={agregarPedido}
         disminuirCntd={disminuirCntd}
         eliminarProducto={eliminarProducto}
+        pedidos={pedidos}
+        setPedidos={setPedidos}
       />
     </td>
     <td>{producto.name}</td>

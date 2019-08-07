@@ -1,7 +1,7 @@
 import React from "react";
 import Producto from "./Producto";
 
-const Desayuno = ({ agregarPedido,allProducts }) => {
+const Desayuno = ({ agregarPedido,allProducts,pedidos,setPedidos}) => {
   return (
     <div data-testid="desayuno">
      {allProducts && (
@@ -9,16 +9,19 @@ const Desayuno = ({ agregarPedido,allProducts }) => {
           {allProducts.docs.map(
             (ele) =>
               ele.data().menuType === "desayuno" && (
-                <div key={ele.data().id}>
-                  {ele.data().name} ${ele.data().price}{" "}
-                  <img src={ele.data().img}></img>
-                  <button
+                <div key={ele.data().id} className="card text-center" style={{ maxWidth: "40%" }}>
+                 <div className="card-body">
+                 <h5 className="card-title">{ele.data().name} ${ele.data().price}{" "}</h5>
+                  <img src={ele.data().img}class="card-img-top" alt="..."></img>
+                  <button className="btn btn-primary"
                     onClick={() => {
-                      agregarPedido(ele.data());
+                      console.log(ele.data());
+                      setPedidos(agregarPedido(ele.data(),pedidos));
                     }}
                   >
                     Agregar
                   </button>
+                  </div> 
                 </div>
               )
           )}
@@ -29,3 +32,4 @@ const Desayuno = ({ agregarPedido,allProducts }) => {
 };
 
 export default Desayuno;
+
