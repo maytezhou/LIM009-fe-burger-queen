@@ -2,19 +2,23 @@
 
 exports[`renders 1`] = `
 <DocumentFragment>
-  <button
-    class="btn btn-outline-success"
-    data-testid="new-order-btn"
-    type="button"
+  <div
+    class="trans text-center"
   >
-    Nueva Orden
-  </button>
-  <button
-    class="btn btn-outline-success"
-    data-testid="order-list-btn"
-    type="button"
-  >
-    Lista de ordenes
-  </button>
+    <button
+      class="btn btn-primary mx-2 px-5 mb-3 mt-3 aos-init aos-animate"
+      data-testid="new-order-btn"
+      type="button"
+    >
+      Nueva Orden
+    </button>
+    <button
+      class="btn btn-primary mx-2 px-5 mb-3 mt-3 aos-init aos-animate"
+      data-testid="order-list-btn"
+      type="button"
+    >
+      Lista de ordenes
+    </button>
+  </div>
 </DocumentFragment>
 `;

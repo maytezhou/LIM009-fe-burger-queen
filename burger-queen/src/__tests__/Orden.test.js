@@ -11,7 +11,7 @@ it('renders', () => {
 })
 it('inserts logo image in <img>', () => {
     const{ getByTestId, getByText} =render (<Orden />)
-    expect(getByTestId('new-order-btn')).toHaveClass("btn btn-outline-success");
-    expect(getByTestId('order-list-btn')).toHaveClass("btn btn-outline-success");
+    expect(getByTestId('new-order-btn')).toHaveClass("btn btn-primary mx-2 px-5 mb-3 mt-3 aos-init aos-animate");
+    expect(getByTestId('order-list-btn')).toHaveClass("btn btn-primary mx-2 px-5 mb-3 mt-3 aos-init aos-animate");
     expect(getByText('Nueva Orden')).toHaveAttribute('type', expect.stringContaining('button'));
 })

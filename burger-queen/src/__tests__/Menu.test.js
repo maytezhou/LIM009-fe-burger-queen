@@ -1,30 +1,49 @@
 import React from "react";
-import { render, fireEvent, waitForElement, act } from "@testing-library/react";
+import {
+  render,
+  fireEvent,
+  waitForElement,
+  act,
+  queryAllByAltText
+} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import "@testing-library/react/cleanup-after-each";
 import "@testing-library/jest-dom/extend-expect";
 import Menu from "../components/Menu";
+import Desayuno from "../components/Desayuno";
 
 it("renders", () => {
   const { asFragment } = render(<Menu />);
   expect(asFragment()).toMatchSnapshot();
 });
-it("inserts", async () => {
-  const { getByTestId, getByText } = render(<Menu />);
-  const btn = getByText("Desayuno");
+it("se deberia renderizar bebidas despues de un click", async () => {
+  const { getByTestId, getByText, getAllByText } = render(<Menu />);
   act(() => {
-    fireEvent.click(btn);
+    fireEvent.click(getByText("Desayuno"));
   });
-  const desayunoElement = await waitForElement(() => {
-    return getByTestId("desayuno");
-  });
+  // const desayunoElement = await waitForElement(() => {
+  //   return <Desayuno />;
+  // });
+  //comprobando que se renderize el componente menu
+  expect(getByText('Desayuno')).toHaveAttribute('type', expect.stringContaining('button'));
+
+  // await waitForElement(()=> getAllByText((_, { textContent }) => textContent === 'Café con leche')[0])
+  // const [ node ] = getAllByText(
+  //   (_, { textContent }) => textContent === "Café con leche"
+  // )
+  // expect(node.textContent).toBe("Jen is fun")
+  
+  
   // expect(getByTestId('imgLogo')).toHaveClass('center');
-  // expect(getByAltText('logo')).toHaveAttribute('alt', expect.stringContaining('logo'));
-  expect(desayunoElement.textContent).toBe("Café con leche");
+  //  expect(findAllByAltText ('img'));
+  // const arrh6= await waitForElement(()=> {
+  //   return query()
+  // })
+  //expect(desayunoElement).toEqual("");
 
-  const desayunoProductos = await waitForElement(() => {
-    return getByTestId("desayuno-productos");
-  });
+  // const desayunoProducto = await waitForElement(() => {
+  //   return getByTestId("desayuno-producto");
+  // });
 
-  expect(desayunoProductos.textContent.startsWith('Café con leche')).toBe(true);
+  // expect(desayunoProducto.textContent.startsWith("")).toBe(true);
 });

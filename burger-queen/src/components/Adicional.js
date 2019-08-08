@@ -21,12 +21,14 @@ const Adicional = ({
 }) => {
   return (
     <>
-      <div className="card text-center" style={{ maxWidth: "40%" }}>
+      <div className="card text-center" style={{ maxWidth: "20%" }} >
         {" "}
         <div className="card-body">
         <h5 className="card-title">{optionName} ${precio}</h5>
-        <img  className="card-title" src={imagen}></img>
-        <button className="btn btn-primary"
+        <img class="card-img-top" className="card-title" src={imagen}></img>
+        </div>
+        <div className="mb-3">
+        <button className="btn btn-success"
           onClick={() => {
             //agregarProducto(transformToStandar(product, precio));
             setPedidos(agregarPedido({

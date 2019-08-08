@@ -6,3 +6,6 @@ header{
   display: block;
   margin:auto;
 }
+ul{
+  list-style:none;
+}

@@ -5,7 +5,7 @@ exports[`renders 1`] = `
   <header>
     <img
       alt="logo"
-      class="center"
+      class="center pb-1 pt-1"
       data-testid="imgLogo"
       src="logoBq.png"
     />

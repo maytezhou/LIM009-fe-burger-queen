@@ -1,5 +1,5 @@
 import React from "react";
-import Cliente from './Cliente';
+import Cliente from "./Cliente";
 import Producto from "./Producto";
 import Total from "./Total";
 
@@ -14,18 +14,18 @@ const Pedido = ({
   agregarNumeroDeMesa,
   numeroDeMesa,
   gettingTotalCost,
-  setPedidos,
+  setPedidos
 }) => {
   return (
     <form
-      // // onSubmit={(e) => {
-      // //   e.preventDefault();
-      // //   let numberTable = parseInt(numeroDeMesa);
-      // //   console.log('ESTO ES PEDIDOS ANTES DE SUBIRSE',pedidos);
-      // //   agregarOrdenFirebase(pedidos, clientName, numberTable);
-      // }}
+    // // onSubmit={(e) => {
+    // //   e.preventDefault();
+    // //   let numberTable = parseInt(numeroDeMesa);
+    // //   console.log('ESTO ES PEDIDOS ANTES DE SUBIRSE',pedidos);
+    // //   agregarOrdenFirebase(pedidos, clientName, numberTable);
+    // }}
     >
-      <div className="card text-white bg-info mb-3" style={{ maxWidth: "50%" }}>
+      <div className="card text-black" style={{ maxWidth: "100%" }}>
         <div className="card-header">
           <Cliente
             clientName={clientName}
@@ -69,10 +69,14 @@ const Pedido = ({
               </tbody>
             </table>
             {pedidos.length >= 1 && clientName !== "" && numeroDeMesa !== "" ? (
-              <button onClick={() => {
-                let numberTable = parseInt(numeroDeMesa);
-                agregarOrdenFirebase(pedidos, clientName, numberTable);
-              }}>Enviar a cocina</button>
+              <button
+                onClick={() => {
+                  let numberTable = parseInt(numeroDeMesa);
+                  agregarOrdenFirebase(pedidos, clientName, numberTable);
+                }}
+              >
+                Enviar a cocina
+              </button>
             ) : (
               ""
             )}
