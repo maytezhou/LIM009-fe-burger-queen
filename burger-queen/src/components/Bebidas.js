@@ -1,6 +1,6 @@
 import React from "react";
 
-const Bebidas = ({ allProducts, agregarPedido }) => {
+const Bebidas = ({ allProducts, agregarPedido,pedidos,setPedidos }) => {
   return (
     <div className="mt-3 mb-3">
       {allProducts && (
@@ -23,7 +23,7 @@ const Bebidas = ({ allProducts, agregarPedido }) => {
                     <button
                       className="btn btn-success"
                       onClick={() => {
-                        agregarPedido(ele.data());
+                        setPedidos(agregarPedido(ele.data(),pedidos));
                       }}
                     >
                       Agregar{" "}

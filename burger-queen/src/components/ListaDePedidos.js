@@ -1,7 +1,7 @@
 import React from "react";
 import PedidoDeUnCliente from "./PedidoDeUnCliente";
 
-const ListaDePedidos = ({ allPedidosFromFirebase, agregarHoraDeTerminoAFirebase,documentId }) => {
+const ListaDePedidos = ({ allPedidosFromFirebase, agregarHoraDeTerminoAFirebase,documentId,horas,minutes,segundos,calculandoLaDuracion,agregarDuracionAFirebase }) => {
   return (
     <div>
       {allPedidosFromFirebase && (
@@ -26,13 +26,20 @@ const ListaDePedidos = ({ allPedidosFromFirebase, agregarHoraDeTerminoAFirebase,
                   <button
                     onClick={() => {
                       const today = new Date();
+                      const hours2= today.getHours();
+                      const minutes2= today.getMinutes();
+                      const seconds2 = today.getSeconds();
                       const timeFin =
-                        today.getHours() +
+                       hours2 +
                         ":" +
-                        today.getMinutes() +
+                        minutes2 +
                         ":" +
-                        today.getSeconds();
+                       seconds2;
+                        
+                      
                         agregarHoraDeTerminoAFirebase(timeFin,documentId);
+                        calculandoLaDuracion(horas,hours2,minutes,minutes2,segundos,seconds2);
+                        agregarDuracionAFirebase(calculandoLaDuracion(horas,hours2,minutes,minutes2,segundos,seconds2),documentId);
                     }}
                   >
                     Listo para servirse
