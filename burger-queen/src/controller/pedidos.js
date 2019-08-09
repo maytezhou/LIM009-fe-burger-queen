@@ -62,3 +62,19 @@ export const disminuirCntd = (producto, arrPedidos) => {
     return newProductos2;
   }
 };
+
+
+export const calculandoLaDuracion = (
+  horaDeInicio,
+  horaDeFin,
+  minutosDeInicio,
+  minutoDeFin,
+  segundosInicio,
+  segundosFin
+) => {
+  const hora = horaDeFin - horaDeInicio;
+  const minutos = minutoDeFin - minutosDeInicio;
+  let segundos = segundosFin - segundosInicio;
+  
+  return `${hora} : ${minutos} : ${segundos < 0 ? segundos *= -1 :segundos}`;
+};

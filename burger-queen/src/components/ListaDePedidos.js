@@ -1,7 +1,16 @@
 import React from "react";
 import PedidoDeUnCliente from "./PedidoDeUnCliente";
 
-const ListaDePedidos = ({ allPedidosFromFirebase, agregarHoraDeTerminoAFirebase,documentId,horas,minutes,segundos,calculandoLaDuracion,agregarDuracionAFirebase }) => {
+const ListaDePedidos = ({
+  allPedidosFromFirebase,
+  agregarHoraDeTerminoAFirebase,
+  documentId,
+  horas,
+  minutes,
+  segundos,
+  calculandoLaDuracion,
+  agregarDuracionAFirebase
+}) => {
   return (
     <div>
       {allPedidosFromFirebase && (
@@ -17,6 +26,7 @@ const ListaDePedidos = ({ allPedidosFromFirebase, agregarHoraDeTerminoAFirebase,
                         <div>Fecha: {p.data().date}</div>
                         <div></div>
                         <div>Cliente: {p.data().client} Mesa: 5</div>
+                        <div>Estado: {p.data().status}</div>
                       </div>
                     </tr>
                   </thead>
@@ -26,20 +36,31 @@ const ListaDePedidos = ({ allPedidosFromFirebase, agregarHoraDeTerminoAFirebase,
                   <button
                     onClick={() => {
                       const today = new Date();
-                      const hours2= today.getHours();
-                      const minutes2= today.getMinutes();
+                      const hours2 = today.getHours();
+                      const minutes2 = today.getMinutes();
                       const seconds2 = today.getSeconds();
-                      const timeFin =
-                       hours2 +
-                        ":" +
-                        minutes2 +
-                        ":" +
-                       seconds2;
-                        
-                      
-                        agregarHoraDeTerminoAFirebase(timeFin,documentId);
-                        calculandoLaDuracion(horas,hours2,minutes,minutes2,segundos,seconds2);
-                        agregarDuracionAFirebase(calculandoLaDuracion(horas,hours2,minutes,minutes2,segundos,seconds2),documentId);
+                      const timeFin = hours2 + ":" + minutes2 + ":" + seconds2;
+
+                      agregarHoraDeTerminoAFirebase(timeFin, documentId);
+                      calculandoLaDuracion(
+                        horas,
+                        hours2,
+                        minutes,
+                        minutes2,
+                        segundos,
+                        seconds2
+                      );
+                      agregarDuracionAFirebase(
+                        calculandoLaDuracion(
+                          horas,
+                          hours2,
+                          minutes,
+                          minutes2,
+                          segundos,
+                          seconds2
+                        ),
+                        documentId
+                      );
                     }}
                   >
                     Listo para servirse

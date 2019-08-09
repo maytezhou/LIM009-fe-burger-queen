@@ -25,7 +25,7 @@ const Producto = ({
     <td>
       <button
         onClick={() => {
-          eliminarProducto(producto.id);
+          setPedidos(eliminarProducto(producto.id, pedidos));
         }}
       >
         x

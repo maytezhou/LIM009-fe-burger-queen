@@ -13,12 +13,11 @@ import {
   gettingTotalCost,
   agregarPedido,
   disminuirCntd,
-  eliminarProducto
+  eliminarProducto,
+  calculandoLaDuracion,
 } from "../src/controller/pedidos";
 
 function App() {
-  
-  
   const [minutes, setMinutes] = useState(null);
   const [horas, setHoras] = useState(null);
   const [segundos, setSegundos] = useState(null);
@@ -43,13 +42,13 @@ function App() {
   const agregarNumeroDeMesa = (e) => setTableNumber(e.target.value);
 
   // const firebase.firestore().collection(nameCollection).doc(docId).get();
-  const agregarDuracionAFirebase = (duracion,documentId) => {
+  const agregarDuracionAFirebase = (duracion, documentId) => {
     console.log("SE SUBIO LA DURACION A  FIREBASE");
     const db = firebase.firestore();
     db.collection("clients")
       .doc(documentId)
       .update({
-       duracion,
+        duracion
       });
   };
   const agregarHoraDeTerminoAFirebase = (horaDeFin, documentId) => {
@@ -61,12 +60,7 @@ function App() {
         horaDeFin
       });
   };
-  const calculandoLaDuracion = (horaDeInicio,horaDeFin,minutosDeInicio,minutoDeFin,segundosInicio,segundosFin) => {
-    const hora=horaDeFin - horaDeInicio;
-   const minutos=  minutoDeFin - minutosDeInicio;
-   const segundos =  segundosFin - segundosInicio;
-return `${hora} : ${minutos} : ${segundos}`;
-  };
+  
 
   const agregarOrdenFirebase = (arrPedidos, nameClient, numeroDeMesa) => {
     console.log("SE SUBIO A FIREBASE");
@@ -84,14 +78,14 @@ return `${hora} : ${minutos} : ${segundos}`;
       today.getDate();
     const time =
       today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-      const hours=today.getHours();
-      const minutes=today.getMinutes();
-       const seconds = today.getSeconds();
-     setHoras(hours);
-     setMinutes(minutes);
-     setSegundos(seconds);
+    const hours = today.getHours();
+    const minutes = today.getMinutes();
+    const seconds = today.getSeconds();
+    setHoras(hours);
+    setMinutes(minutes);
+    setSegundos(seconds);
 
-     db.collection("clients")
+    db.collection("clients")
       .add({
         date,
         horaInicio: time,
@@ -102,7 +96,7 @@ return `${hora} : ${minutos} : ${segundos}`;
       })
       .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
-      setPedidosId(docRef.id);
+        setPedidosId(docRef.id);
       });
     setClientName("");
     setTableNumber("");
@@ -150,8 +144,8 @@ return `${hora} : ${minutos} : ${segundos}`;
           horas={horas}
           minutes={minutes}
           segundos={segundos}
-         calculandoLaDuracion={calculandoLaDuracion}
-         agregarDuracionAFirebase={agregarDuracionAFirebase}
+          calculandoLaDuracion={calculandoLaDuracion}
+          agregarDuracionAFirebase={agregarDuracionAFirebase}
         />
       </div>
     </div>
