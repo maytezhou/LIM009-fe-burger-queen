@@ -8,6 +8,7 @@ const PedidoDeUnCliente = ({ pedido }) => {
           <td>{p.cantidad}</td>
           <td>{p.name}</td>
           <td>${p.costo}</td>
+          <td></td>
         </tr>
       ))}
     </div>

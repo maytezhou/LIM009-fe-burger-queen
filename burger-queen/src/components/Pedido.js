@@ -3,6 +3,7 @@ import Cliente from "./Cliente";
 import Producto from "./Producto";
 import Total from "./Total";
 
+
 const Pedido = ({
   pedidos,
   eliminarProducto,
@@ -73,6 +74,8 @@ const Pedido = ({
                 onClick={() => {
                   let numberTable = parseInt(numeroDeMesa);
                   agregarOrdenFirebase(pedidos, clientName, numberTable);
+                 
+
                 }}
               >
                 Enviar a cocina

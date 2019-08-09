@@ -5,7 +5,7 @@ import Orden from "./components/Orden";
 import "./App.css";
 import Menu from "./components/Menu";
 import Pedido from "./components/Pedido";
-import ListaDePedidos from './components/ListaDePedidos'
+import ListaDePedidos from "./components/ListaDePedidos";
 import Logo from "./img/logoBq.png";
 import { useCollection } from "react-firebase-hooks/firestore";
 import app from "../src/components/Firebase";
@@ -17,6 +17,13 @@ import {
 } from "../src/controller/pedidos";
 
 function App() {
+  
+  
+  const [minutes, setMinutes] = useState(null);
+  const [horas, setHoras] = useState(null);
+  const [segundos, setSegundos] = useState(null);
+
+  const [pedidosId, setPedidosId] = useState("");
   const [pedidos, setPedidos] = useState([]);
   const [clientName, setClientName] = useState("");
   const [numeroDeMesa, setTableNumber] = useState("");
@@ -26,30 +33,66 @@ function App() {
     snapshotListenOptions: { includeMetadataChanges: true }
   });
   //llamando colleccion clientes
-  const [allPedidosFromFirebase] = useCollection(app.firestore().collection("clients"), {
-    snapshotListenOptions: { includeMetadataChanges: true }
-  });
+  const [allPedidosFromFirebase] = useCollection(
+    app.firestore().collection("clients"),
+    {
+      snapshotListenOptions: { includeMetadataChanges: true }
+    }
+  );
   const agregarNombreDelCliente = (e) => setClientName(e.target.value);
   const agregarNumeroDeMesa = (e) => setTableNumber(e.target.value);
 
-  
   // const firebase.firestore().collection(nameCollection).doc(docId).get();
+  const agregarHoraDeTerminoAFirebase = (horaDeFin, documentId) => {
+    console.log("SE SUBIO LA HORA DE FIN  FIREBASE");
+    const db = firebase.firestore();
+    db.collection("clients")
+      .doc(documentId)
+      .update({
+        horaDeFin
+      });
+  };
+  const calculandoLaDuracion = (horaDeInicio,horaDeFin,minutosDeInicio,minutoDeFin,segundosInicio,segundosFin) => {
+    const hora=horaDeInicio - horaDeFin;
+   const minutos= minutosDeInicio - minutoDeFin;
+   const segundos =  segundosInicio - segundosFin;
+return hora.toString() + minutos.toString() + segundos.toString();
+  };
 
   const agregarOrdenFirebase = (arrPedidos, nameClient, numeroDeMesa) => {
     console.log("SE SUBIO A FIREBASE");
     const db = firebase.firestore();
     const today = new Date();
-    const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    db.collection("clients").add({
-      date,
-      hour: time,
-      duration: '00:00:00',
-      status:'pendiente',
-      client: nameClient,
-      order: arrPedidos,
-      mesa: numeroDeMesa
-    });
+    // const now= Date.now();
+    // console.log('horaaaaa',now/1000);
+    // console.log('segundoss',now%60);
+    // console.log('minuto',now/60);
+    const date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
+    const time =
+      today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      const hours=today.getHours();
+      const minutes=today.getMinutes();
+       const seconds = today.getSeconds();
+     
+
+     db.collection("clients")
+      .add({
+        date,
+        horaInicio: time,
+        status: "pendiente",
+        client: nameClient,
+        order: arrPedidos,
+        mesa: numeroDeMesa
+      })
+      .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+      setPedidosId(docRef.id);
+      });
     setClientName("");
     setTableNumber("");
     setPedidos([]);
@@ -90,7 +133,9 @@ function App() {
       </div>
       <div>
         <ListaDePedidos
-        allPedidosFromFirebase={allPedidosFromFirebase}
+          allPedidosFromFirebase={allPedidosFromFirebase}
+          agregarHoraDeTerminoAFirebase={agregarHoraDeTerminoAFirebase}
+          documentId={pedidosId}
         />
       </div>
     </div>
