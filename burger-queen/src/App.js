@@ -43,6 +43,15 @@ function App() {
   const agregarNumeroDeMesa = (e) => setTableNumber(e.target.value);
 
   // const firebase.firestore().collection(nameCollection).doc(docId).get();
+  const agregarDuracionAFirebase = (duracion,documentId) => {
+    console.log("SE SUBIO LA DURACION A  FIREBASE");
+    const db = firebase.firestore();
+    db.collection("clients")
+      .doc(documentId)
+      .update({
+       duracion,
+      });
+  };
   const agregarHoraDeTerminoAFirebase = (horaDeFin, documentId) => {
     console.log("SE SUBIO LA HORA DE FIN  FIREBASE");
     const db = firebase.firestore();
@@ -53,10 +62,10 @@ function App() {
       });
   };
   const calculandoLaDuracion = (horaDeInicio,horaDeFin,minutosDeInicio,minutoDeFin,segundosInicio,segundosFin) => {
-    const hora=horaDeInicio - horaDeFin;
-   const minutos= minutosDeInicio - minutoDeFin;
-   const segundos =  segundosInicio - segundosFin;
-return hora.toString() + minutos.toString() + segundos.toString();
+    const hora=horaDeFin - horaDeInicio;
+   const minutos=  minutoDeFin - minutosDeInicio;
+   const segundos =  segundosFin - segundosInicio;
+return `${hora} : ${minutos} : ${segundos}`;
   };
 
   const agregarOrdenFirebase = (arrPedidos, nameClient, numeroDeMesa) => {
@@ -78,7 +87,9 @@ return hora.toString() + minutos.toString() + segundos.toString();
       const hours=today.getHours();
       const minutes=today.getMinutes();
        const seconds = today.getSeconds();
-     
+     setHoras(hours);
+     setMinutes(minutes);
+     setSegundos(seconds);
 
      db.collection("clients")
       .add({
@@ -136,6 +147,11 @@ return hora.toString() + minutos.toString() + segundos.toString();
           allPedidosFromFirebase={allPedidosFromFirebase}
           agregarHoraDeTerminoAFirebase={agregarHoraDeTerminoAFirebase}
           documentId={pedidosId}
+          horas={horas}
+          minutes={minutes}
+          segundos={segundos}
+         calculandoLaDuracion={calculandoLaDuracion}
+         agregarDuracionAFirebase={agregarDuracionAFirebase}
         />
       </div>
     </div>
