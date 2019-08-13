@@ -4,44 +4,44 @@ import PedidoDeUnCliente from "./PedidoDeUnCliente";
 import {
   calculandoLaDuracion,
   agregarHoraDeTerminoAFirebase,
-  agregarDuracionAFirebase
+  agregarDuracionAFirebase,
+  actualizarEstadoEnFirebase
 } from "../controller/pedidos";
 
-const ListaDePedidos = ({
+const ListaDeOrdenes = ({
   allPedidosFromFirebase,
   documentId,
   horas,
   minutes,
   segundos,
-  actualizarEstadoEnFirebase,
   estado
 }) => {
   return (
-    <div>
+    <div className="table">
       {allPedidosFromFirebase && (
-        <div>
+        <div className="table-cell">
           {allPedidosFromFirebase.docs.map((p) => (
-            <div className="card text-black" style={{ maxWidth: "100%" }}>
+            <div className="table-cell">
               {p.data().status === estado && (
                 <div className="card-body">
-                  <table className="table">
-                    <thead className="table-sm">
+                  <table className="table table-sm">
+                    <thead>
                       <tr>
                         <div className="card-header">
-                          <div>Fecha: {p.data().date}</div>
                           <div>Cliente: {p.data().client} </div>
                           <div>Mesa: 5</div>
-                          <div>Tiempo:{p.data().horaInicio}</div>
+                          <div>Fecha: {p.data().date}</div>
+                          <div>Hora de pedido:{p.data().horaInicio}</div>
                           <div>Estado: {p.data().status}</div>
+                          
                         </div>
                       </tr>
                     </thead>
                     <tbody>
                       <PedidoDeUnCliente pedido={p} />
                     </tbody>
-                    {p.data().status === "pendiente" && (
+                    {p.data().status === "pendiente" ? (
                       <button
-                        className="btn btn-success"
                         onClick={() => {
                           const today = new Date();
                           const hours2 = today.getHours();
@@ -75,6 +75,8 @@ const ListaDePedidos = ({
                       >
                         Listo para servirse
                       </button>
+                    ) : (
+                      ""
                     )}
                   </table>
                 </div>
@@ -86,4 +88,4 @@ const ListaDePedidos = ({
     </div>
   );
 };
-export default ListaDePedidos;
+export default ListaDeOrdenes;

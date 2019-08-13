@@ -1,7 +1,7 @@
 import React from "react";
 
 const Total = ({ pedidos, gettingTotalCost }) => (
-   <div>total = ${gettingTotalCost(pedidos)}</div>
+   <div>TOTAL = ${gettingTotalCost(pedidos)}</div>
 );
 
 export default Total;

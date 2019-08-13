@@ -17,37 +17,43 @@ const Adicional = ({
   dni,
   cantidad,
   pedidos,
-  setPedidos,
+  setPedidos
 }) => {
   return (
-    <>
-      <div className="card text-center" style={{ maxWidth: "20%" }} >
+    <div className="row">
+      <div className="col-6" style={{ maxWidth: "100%" }}>
         {" "}
         <div className="card-body">
-        <h5 className="card-title">{optionName} ${precio}</h5>
-        <img class="card-img-top" className="card-title" src={imagen}></img>
+          <img className="card-img-top" src={imagen} alt=""></img>
         </div>
         <div className="mb-3">
-        <button className="btn btn-success"
-          onClick={() => {
-            //agregarProducto(transformToStandar(product, precio));
-            setPedidos(agregarPedido({
-              ...product,
-              price: precio,
-              name: nombre,
-              id: dni,
-             cantidad:cantidad,
-             costo:precio * cantidad,
-             
-            }, pedidos));
-          }}
-        >
-          Agregar{" "}
-        </button>
+          <h4 className="card-title text-center">
+            {optionName} ${precio}
+          </h4>
+          <button
+            className="btn mb-4 btn-verde center"
+            onClick={() => {
+              //agregarProducto(transformToStandar(product, precio));
+              setPedidos(
+                agregarPedido(
+                  {
+                    ...product,
+                    price: precio,
+                    name: nombre,
+                    id: dni,
+                    cantidad: cantidad,
+                    costo: precio * cantidad
+                  },
+                  pedidos
+                )
+              );
+            }}
+          >
+            Agregar{" "}
+          </button>
         </div>
-        
       </div>
-    </>
+    </div>
   );
 };
 export default Adicional;

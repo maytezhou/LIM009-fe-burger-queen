@@ -8,12 +8,13 @@ const Menu = ({ agregarPedido, allProducts, pedidos, setPedidos }) => {
   const [tipo, setTipo] = useState("desayuno");
   return (
     <div>
+    <div className="card-header text-center fondo-card card-header-nav">
       <button
         onClick={() => {
           setTipo("desayuno");
         }}
         type="button"
-        className="btn btn-info"
+        className="m-1 p-2 btn-amarillo"
       >
         Desayuno
       </button>
@@ -23,7 +24,7 @@ const Menu = ({ agregarPedido, allProducts, pedidos, setPedidos }) => {
           setTipo("almuerzo");
         }}
         type="button"
-        className="btn btn-info "
+        className="m-1 p-2 btn-amarillo"
       >
         Almuerzo y Cena
       </button>
@@ -33,7 +34,7 @@ const Menu = ({ agregarPedido, allProducts, pedidos, setPedidos }) => {
           setTipo("acompañamiento");
         }}
         type="button"
-        className="btn btn-info "
+        className="m-1 p-2 btn-amarillo"
       >
         Acompañamientos
       </button>
@@ -43,13 +44,13 @@ const Menu = ({ agregarPedido, allProducts, pedidos, setPedidos }) => {
           setTipo("bebidas");
         }}
         type="button"
-        className="btn btn-info "
+        className="m-1 p-2 btn-amarillo"
       >
         Bebidas
       </button>
-
+      </div>
       {tipo === "desayuno" && (
-        <div>
+        <div className="">
           <Desayuno
             data-testid="desayuno-producto"
             agregarPedido={agregarPedido}

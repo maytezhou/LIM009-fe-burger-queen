@@ -16,8 +16,8 @@ it("renders", () => {
   const { asFragment } = render(<Menu />);
   expect(asFragment()).toMatchSnapshot();
 });
-it("se deberia renderizar bebidas despues de un click", async () => {
-  const { getByTestId, getByText, getAllByText } = render(<Menu />);
+it.only("se deberia renderizar bebidas despues de un click", async () => {
+  const { asFragment, getByTestId, getByText, getAllByText } = render(<Menu />);
   act(() => {
     fireEvent.click(getByText("Desayuno"));
   });
@@ -32,8 +32,8 @@ it("se deberia renderizar bebidas despues de un click", async () => {
   //   (_, { textContent }) => textContent === "Café con leche"
   // )
   // expect(node.textContent).toBe("Jen is fun")
-  
-  
+  const { asFragment } = render(<Menu />);
+  expect(asFragment()).toMatchSnapshot();
   // expect(getByTestId('imgLogo')).toHaveClass('center');
   //  expect(findAllByAltText ('img'));
   // const arrh6= await waitForElement(()=> {

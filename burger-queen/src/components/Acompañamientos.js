@@ -1,32 +1,47 @@
 import React from "react";
 
-const Acompañamientos = ({ allProducts, agregarPedido, pedidos, setPedidos }) => {
+const Acompañamientos = ({
+  allProducts,
+  agregarPedido,
+  pedidos,
+  setPedidos
+}) => {
   return (
-    <div className="mt-3 mb-3">
+    <div className="card-group">
       {allProducts && (
-        <span className="card-deck">
+        <div className="row">
           {allProducts.docs.map(
             (ele) =>
               ele.data().menuType === "acompañamiento" && (
-                <div key={ele.data().id} className="card text-center" style={{ maxWidth: "20%" }} >
-                <div className="card-body">
-                <h5>{ele.data().name} ${ele.data().price}{" "}</h5>
-                  <img className="card-img-top" alt="..." src={ele.data().img}></img>
+                <div
+                  key={ele.data().id}
+                  className="col-6"
+                  style={{ maxWidth: "50%" }}
+                >
+                  <div className="card-body">
+                    <img
+                      className="card-img-top"
+                      alt="..."
+                      src={ele.data().img}
+                    ></img>
                   </div>
                   <div className="mb-3">
-                  <button class="btn btn-success"
-                    onClick={() => {
-                      setPedidos(agregarPedido(ele.data(),pedidos));
-                    }}
-                  >
-                    Agregar{" "}
-                  </button>
-                </div>
-                  
+                    <h4 className="card-title text-center">
+                      {ele.data().name} ${ele.data().price}{" "}
+                    </h4>
+                    <button
+                      className="btn mb-4 btn-verde center"
+                      onClick={() => {
+                        setPedidos(agregarPedido(ele.data(), pedidos));
+                      }}
+                    >
+                      Agregar{" "}
+                    </button>
+                  </div>
                 </div>
               )
           )}
-        </span>
+        </div>
       )}
     </div>
   );

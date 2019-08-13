@@ -1,3 +1,7 @@
+import React, { useState } from "react";
+import * as firebase from "firebase";
+import { useCollection } from "react-firebase-hooks/firestore";
+
 export const gettingTotalCost = (arrPedidos) => {
   return arrPedidos.reduce((accum, obj) => {
     return accum + obj.costo;
@@ -63,7 +67,6 @@ export const disminuirCntd = (producto, arrPedidos) => {
   }
 };
 
-
 export const calculandoLaDuracion = (
   horaDeInicio,
   horaDeFin,
@@ -75,6 +78,79 @@ export const calculandoLaDuracion = (
   const hora = horaDeFin - horaDeInicio;
   const minutos = minutoDeFin - minutosDeInicio;
   let segundos = segundosFin - segundosInicio;
-  
-  return `${hora} : ${minutos} : ${segundos < 0 ? segundos *= -1 :segundos}`;
+
+  return `${hora} : ${minutos} : ${segundos < 0 ? (segundos *= -1) : segundos}`;
+};
+
+// const firebase.firestore().collection(nameCollection).doc(docId).get();
+export const agregarDuracionAFirebase = (duracion, documentId) => {
+  console.log("SE SUBIO LA DURACION A  FIREBASE");
+  const db = firebase.firestore();
+  db.collection("clients")
+    .doc(documentId)
+    .update({
+      duracion
+    });
+};
+export const actualizarEstadoEnFirebase = (estado, documentId) => {
+  console.log("SE SUBIO LA DURACION A  FIREBASE");
+  const db = firebase.firestore();
+  db.collection("clients")
+    .doc(documentId)
+    .update({
+      status:estado,
+    });
+};
+export const agregarHoraDeTerminoAFirebase = (horaDeFin, documentId) => {
+  console.log("SE SUBIO LA HORA DE FIN  FIREBASE");
+  const db = firebase.firestore();
+  db.collection("clients")
+    .doc(documentId)
+    .update({
+      horaDeFin
+    });
+};
+
+export const agregarOrdenFirebase = (
+  arrPedidos,
+  nameClient,
+  numeroDeMesa,
+  setHoras,
+  setMinutes,
+  setSegundos,
+  setClientName,
+  setTableNumber,
+  setPedidosId,
+  setPedidos
+) => {
+  console.log("SE SUBIO A FIREBASE");
+  const db = firebase.firestore();
+  const today = new Date();
+  const date =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+  const time =
+    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  const hours = today.getHours();
+  const minutes = today.getMinutes();
+  const seconds = today.getSeconds();
+  setHoras(hours);
+  setMinutes(minutes);
+  setSegundos(seconds);
+
+  db.collection("clients")
+    .add({
+      date,
+      horaInicio: time,
+      status: "pendiente",
+      client: nameClient,
+      order: arrPedidos,
+      mesa: numeroDeMesa
+    })
+    .then((docRef) => {
+      console.log("Document written with ID: ", docRef.id);
+      setPedidosId(docRef.id);
+    });
+  setClientName("");
+  setTableNumber("");
+  setPedidos([]);
 };

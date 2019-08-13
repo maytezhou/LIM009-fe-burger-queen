@@ -1,47 +1,47 @@
 import React from "react";
-import Producto from "./Producto";
 
 const Desayuno = ({ agregarPedido, allProducts, pedidos, setPedidos }) => {
   return (
-    <div>
-    <div data-testid="desayuno" className="mt-3 mb-3">
-      {allProducts && (
-        <span  >
-          {allProducts.docs.map(
-            (ele) =>
-              ele.data().menuType === "desayuno" && (
-                <div
-                  key={ele.data().id}
-                  className="card text-center"
-                  style={{ maxWidth: "50%" }}
-                >
-                  <div className="card-body">
-                    <h6 className="card-title">
-                      {ele.data().name} ${ele.data().price}{" "}
-                    </h6>
-                    <img
-                      src={ele.data().img}
-                      className="card-img-top"
-                      alt="..."
-                    ></img>
+    <div className="card-group">
+      <div data-testid="desayuno">
+        {allProducts && (
+          <div className="row">
+            {allProducts.docs.map(
+              (ele) =>
+                ele.data().menuType === "desayuno" && (
+                  <div
+                    key={ele.data().id}
+                    className="col-6"
+                    style={{ maxWidth: "50%" }}
+                  >
+                    <div className="card-body">
+                      <img
+                        src={ele.data().img}
+                        className="card-img-top"
+                        alt="..."
+                      ></img>
+                    </div>
+                    <div>
+                      <h4 className="card-title text-center">
+                        {ele.data().name}  ${ele.data().price}
+                      </h4>
+                      <button
+                        className="btn mb-4 btn-verde center"
+                        onClick={() => {
+                          console.log(ele.data());
+                          setPedidos(agregarPedido(ele.data(), pedidos));
+                          // agregarPedido(ele.data(), pedidos,setPedidos);
+                        }}
+                      >
+                        Agregar
+                      </button>
+                    </div>
                   </div>
-                  <div className="mb-3">
-                    <button
-                      className="btn btn-success"
-                      onClick={() => {
-                        console.log(ele.data());
-                        setPedidos(agregarPedido(ele.data(), pedidos));
-                      }}
-                    >
-                      Agregar
-                    </button>
-                  </div>
-                </div>
-              )
-          )}
-        </span>
-      )}
-    </div>
+                )
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

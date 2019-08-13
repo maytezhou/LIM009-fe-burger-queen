@@ -28,7 +28,7 @@ const Producto = ({
           setPedidos(eliminarProducto(producto.id, pedidos));
         }}
       >
-        x
+        <img src="https://i.postimg.cc/pdd1tZXB/delete.png" className="btn-img-delete btn-none"/>
       </button>
     </td>
   </tr>
