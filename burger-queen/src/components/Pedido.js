@@ -31,8 +31,8 @@ const Pedido = ({
     // //   agregarOrdenFirebase(pedidos, clientName, numberTable);
     // }}
     >
-      <div className="card text-black" style={{ maxWidth: "100%" }}>
-        <div className="card-header">
+      <div className="text-black" style={{ maxWidth: "100%" }}>
+        <div className="card-header card-header-nav">
           <Cliente
             clientName={clientName}
             agregarNombreDelCliente={agregarNombreDelCliente}
@@ -42,13 +42,13 @@ const Pedido = ({
         </div>
         <div className="card-body">
           <div>
-            <table className="table">
-              <thead className="thead-dark">
+            <table className="table table-sm">
+              <thead>
                 <tr>
                   <th scope="col">Cantidad</th>
                   <th scope="col">Producto</th>
                   <th scope="col">Precio</th>
-                  <th scope="col">Eliminar</th>
+                  <th scope="col"> Eliminar</th>
                 </tr>
               </thead>
               <tbody>
@@ -76,6 +76,7 @@ const Pedido = ({
             </table>
             {pedidos.length >= 1 && clientName !== "" && numeroDeMesa !== "" ? (
               <button
+                className="btn btn-success"
                 onClick={() => {
                   let numberTable = parseInt(numeroDeMesa);
                   agregarOrdenFirebase(
@@ -88,7 +89,7 @@ const Pedido = ({
                     setClientName,
                     setTableNumber,
                     setPedidosId,
-                    setPedidos,
+                    setPedidos
                   );
                 }}
               >

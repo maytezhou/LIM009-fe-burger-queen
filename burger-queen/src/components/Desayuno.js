@@ -1,35 +1,35 @@
 import React from "react";
 
-const Desayuno = ({ agregarPedido, allProducts, pedidos,setPedidos}) => {
+const Desayuno = ({ agregarPedido, allProducts, pedidos, setPedidos }) => {
   return (
-    <div>
-      <div data-testid="desayuno" className="row">
+    <div className="card-group">
+      <div data-testid="desayuno">
         {allProducts && (
-          <div className="col-6">
+          <div className="row">
             {allProducts.docs.map(
               (ele) =>
                 ele.data().menuType === "desayuno" && (
                   <div
                     key={ele.data().id}
-                    className="card-deck"
-                    style={{ maxWidth: "100%" }}
+                    className="col-6"
+                    style={{ maxWidth: "50%" }}
                   >
                     <div className="card-body">
-                      <h6 className="card-title">
-                        {ele.data().name} ${ele.data().price}{" "}
-                      </h6>
                       <img
                         src={ele.data().img}
                         className="card-img-top"
                         alt="..."
                       ></img>
                     </div>
-                    <div className="">
+                    <div>
+                      <h4 className="card-title text-center">
+                        {ele.data().name}  ${ele.data().price}
+                      </h4>
                       <button
-                        className="btn btn-success text-center"
+                        className="btn mb-4 btn-verde center"
                         onClick={() => {
                           console.log(ele.data());
-                           setPedidos(agregarPedido(ele.data(), pedidos));
+                          setPedidos(agregarPedido(ele.data(), pedidos));
                           // agregarPedido(ele.data(), pedidos,setPedidos);
                         }}
                       >

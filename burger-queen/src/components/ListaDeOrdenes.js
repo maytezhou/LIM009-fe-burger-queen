@@ -5,7 +5,7 @@ import {
   calculandoLaDuracion,
   agregarHoraDeTerminoAFirebase,
   agregarDuracionAFirebase,
-  actualizarEstadoEnFirebase,
+  actualizarEstadoEnFirebase
 } from "../controller/pedidos";
 
 const ListaDeOrdenes = ({
@@ -14,50 +14,43 @@ const ListaDeOrdenes = ({
   horas,
   minutes,
   segundos,
- estado
+  estado
 }) => {
   return (
-    <div>
+    <div className="table">
       {allPedidosFromFirebase && (
-        <div>
+        <div className="table-cell">
           {allPedidosFromFirebase.docs.map((p) => (
-            <div className="card text-black" style={{ maxWidth: "100%" }}>
+            <div className="table-cell">
               {p.data().status === estado && (
                 <div className="card-body">
-                  <table className="table">
+                  <table className="table table-sm">
                     <thead>
                       <tr>
                         <div className="card-header">
-                          Tiempo:{p.data().horaInicio}
+                          <div>Cliente: {p.data().client} </div>
+                          <div>Mesa: 5</div>
                           <div>Fecha: {p.data().date}</div>
-                          <div></div>
-                          <div>Cliente: {p.data().client} Mesa: 5</div>
+                          <div>Hora de pedido:{p.data().horaInicio}</div>
                           <div>Estado: {p.data().status}</div>
+                          
                         </div>
                       </tr>
                     </thead>
                     <tbody>
                       <PedidoDeUnCliente pedido={p} />
                     </tbody>
-                    {p.data().status === 'pendiente'?<button
-                      onClick={() => {
-                        const today = new Date();
-                        const hours2 = today.getHours();
-                        const minutes2 = today.getMinutes();
-                        const seconds2 = today.getSeconds();
-                        const timeFin =
-                          hours2 + ":" + minutes2 + ":" + seconds2;
+                    {p.data().status === "pendiente" ? (
+                      <button
+                        onClick={() => {
+                          const today = new Date();
+                          const hours2 = today.getHours();
+                          const minutes2 = today.getMinutes();
+                          const seconds2 = today.getSeconds();
+                          const timeFin =
+                            hours2 + ":" + minutes2 + ":" + seconds2;
 
-                        agregarHoraDeTerminoAFirebase(timeFin, documentId);
-                        calculandoLaDuracion(
-                          horas,
-                          hours2,
-                          minutes,
-                          minutes2,
-                          segundos,
-                          seconds2
-                        );
-                        agregarDuracionAFirebase(
+                          agregarHoraDeTerminoAFirebase(timeFin, documentId);
                           calculandoLaDuracion(
                             horas,
                             hours2,
@@ -65,14 +58,26 @@ const ListaDeOrdenes = ({
                             minutes2,
                             segundos,
                             seconds2
-                          ),
-                          documentId
-                        );
-                        actualizarEstadoEnFirebase("entregado", documentId);
-                      }}
-                    >
-                      Listo para servirse
-                    </button> : ''}
+                          );
+                          agregarDuracionAFirebase(
+                            calculandoLaDuracion(
+                              horas,
+                              hours2,
+                              minutes,
+                              minutes2,
+                              segundos,
+                              seconds2
+                            ),
+                            documentId
+                          );
+                          actualizarEstadoEnFirebase("entregado", documentId);
+                        }}
+                      >
+                        Listo para servirse
+                      </button>
+                    ) : (
+                      ""
+                    )}
                   </table>
                 </div>
               )}

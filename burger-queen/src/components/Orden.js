@@ -19,7 +19,7 @@ const Orden = ({
       <button
         data-testid="new-order-btn"
         type="button"
-        className="btn btn-primary mx-2 px-5 mb-3 mt-3 aos-init aos-animate"
+        className="btn  mx-2 px-5 mb-3 mt-3 aos-init aos-animate btn-lila"
         onClick={() => {
           setPedidos([]);
           setClientName("");
@@ -28,16 +28,16 @@ const Orden = ({
       >
         Nueva Orden
       </button>
-      <Link
+      <button
         data-testid="order-list-btn"
         type="button"
-        className="btn btn-primary mx-2 px-5 mb-3 mt-3 aos-init aos-animate"
+        className="btn mx-2 px-5 mb-3 mt-3 aos-init aos-animate btn-lila"
         onClick={() => {
           setEstado("entregado");
         }}
       >
         Lista de ordenes
-      </Link>
+      </button>
       {estado === "entregado" && (
         <div>
           <ListaDeOrdenes

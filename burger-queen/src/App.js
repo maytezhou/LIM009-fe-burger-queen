@@ -7,7 +7,7 @@ import app from "../src/components/Firebase";
 import Header from "./components/Header";
 import "./App.css";
 import ListaDePedidos from "./components/ListaDePedidos";
-import Logo from "./img/logoBq.png";
+import Logo from "./img/burger-logo.png";
 import Mesero from "./components/Mesero";
 import JefeDeCocina from "./components/JefeDeCocina";
 import Home from "./components/Home"
