@@ -6,11 +6,11 @@ const Home = () => {
     <div className="text-center mt-5">
       
         <Link to="/cocinero" className="m-5">
-          <img src="https://i.postimg.cc/1Xqk1ttr/cocinero.png" />
+          <img src="https://i.postimg.cc/0QfzjvbF/cocina.png" />
         </Link>
      
         <Link to="/mesero" className="m-5">
-          <img src="https://i.postimg.cc/vBjJK9Qm/mesero.png" />
+          <img src="https://i.postimg.cc/zvGVRQhB/mesa.png" />
         </Link>
       
     </div>
