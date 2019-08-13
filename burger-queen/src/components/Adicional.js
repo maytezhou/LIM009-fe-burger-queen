@@ -20,8 +20,8 @@ const Adicional = ({
   setPedidos
 }) => {
   return (
-    <div className="row">
-      <div className="col-6" style={{ maxWidth: "100%" }}>
+    <div className="">
+      <div className="" style={{ maxWidth: "100%" }}>
         {" "}
         <div className="card-body">
           <img className="card-img-top" src={imagen} alt=""></img>
