@@ -30,7 +30,7 @@ const ListaDeOrdenes = ({
                       <tr>
                         <div className="card-header">
                           <div>Cliente: {p.data().client} </div>
-                          <div>Mesa: 5</div>
+                          <div>Mesa: {p.data().mesa}</div>
                           <div>Fecha: {p.data().date}</div>
                           <div>Hora de pedido:{p.data().horaInicio}</div>
                           {p.data().status === 'entregado' ? <div>Tiempo de Preparacion:{p.data().duracion}</div> : ''}

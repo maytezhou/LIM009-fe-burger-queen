@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import ListaDeOrdenes from "./ListaDeOrdenes";
 
 const Orden = ({
@@ -30,7 +29,6 @@ const Orden = ({
       </button>
       <Link to="/ordenes"  className="btn mx-2 px-5 mb-3 mt-3 aos-init aos-animate btn-lila"
         data-testid="order-list-btn"> Lista de ordenes
-    
     </Link>
       {/* <button
         data-testid="order-list-btn"
@@ -58,11 +56,13 @@ const Orden = ({
   );
 };
 export default Orden;
-{/* <ListaDeOrdenes
+{
+  /* <ListaDeOrdenes
 allPedidosFromFirebase={allPedidosFromFirebase}
 documentId={documentId}
 horas={horas}
 minutes={minutes}
 segundos={segundos}
 estado={estado}
-/> */}
+/> */
+}
