@@ -34,6 +34,7 @@ const ListaDePedidos = ({
                           <div>Cliente: {p.data().client} </div>
                           <div>Mesa: {p.data().mesa}</div>
                           <div>Hora: {p.data().horaInicio}</div>
+                          {p.data().status === 'entregado' ?<div>Tiempo de Preparacion:{p.data().duracion}</div> : ''} 
                           <div>Estado del Pedido: {p.data().status}</div>
                           </div>
                       </tr>
