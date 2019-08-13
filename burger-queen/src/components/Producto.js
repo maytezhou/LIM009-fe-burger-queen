@@ -24,11 +24,12 @@ const Producto = ({
     <td>${producto.costo}</td>
     <td>
       <button
+      className="btn-none"
         onClick={() => {
           setPedidos(eliminarProducto(producto.id, pedidos));
         }}
       >
-        <img src="https://i.postimg.cc/pdd1tZXB/delete.png" className="btn-img-delete btn-none"/>
+        <img src="https://i.postimg.cc/pdd1tZXB/delete.png" className="btn-img-delete"/>
       </button>
     </td>
   </tr>

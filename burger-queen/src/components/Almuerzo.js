@@ -33,14 +33,14 @@ const Almuerzo = ({ allProducts, agregarPedido, pedidos, setPedidos }) => {
                 />
                 <label htmlFor="gridCheckRes" class="form-check-label titulo" >{doc.data().name}</label>
                 </div>
-                <div className="table">
+                <div className="trans text-center">
                 {state.tipo === doc.data().name && ( // si el tipo de hamburguesa que selecciono el usuario (guardada previamente en el estado) es igual al tipo de hamburguesa  (de res/de pollo/ vegetariana)
                   //  disponible ( en firebase) entonces que renderize los dos botones simple y doble
-                  <div className="text-center">
+                  <div className="">
                     <div>
                       <button
                         type="button"
-                        className="btn btn-lila table-cell m-1"
+                        className="btn btn-lila m-1"
                         onClick={() => {
                           // si la persona  hace click en  el boton simple entonces
                           setState((state) => ({
@@ -80,7 +80,7 @@ const Almuerzo = ({ allProducts, agregarPedido, pedidos, setPedidos }) => {
                     <div>
                       <button
                         type="button"
-                        className="btn btn-lila table-cell m-1"
+                        className="btn btn-lila m-1"
                         onClick={() => {
                           // si la persona  hace click en  el boton doble entonces
                           setState((state) => ({

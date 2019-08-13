@@ -59,6 +59,10 @@ header{
   border: 0;
 }
 .titulo{
-  font-size: 1.2em;
+  font-size: 1.5em;
   color: #7C1E1E;
+}
+.label-txt{
+  color: #1e3b58;
+  font-size: 1em
 }

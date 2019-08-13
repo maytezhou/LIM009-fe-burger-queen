@@ -8,8 +8,8 @@ const Cliente = ({
   numeroDeMesa
 }) => (
   <div className="input-group">
-    <label type="text" className="">
-      Cliente:
+    <label type="text" className="label-txt">
+      Cliente
       </label>
       <input
         type="text"
@@ -23,8 +23,8 @@ const Cliente = ({
         //aria-label="Text input with segmented dropdown button"
       />
     
-    <label type="text" className="">
-      Mesa:
+    <label type="text" className="label-txt">
+      Mesa
       </label>
       <input
         type="number"

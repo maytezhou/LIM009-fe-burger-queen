@@ -17,11 +17,11 @@ const ListaDePedidos = ({
   estado
 }) => {
   return (
-    <div>
+    <div className="table">
       {allPedidosFromFirebase && (
-        <div>
+        <div className="table-cell">
           {allPedidosFromFirebase.docs.map((p) => (
-            <div className="card text-black" style={{ maxWidth: "100%" }}>
+            <div className="table-cell" style={{ maxWidth: "100%" }}>
               {p.data().status === estado && (
                 <div className="card-body">
                   <table className="table">
@@ -31,7 +31,7 @@ const ListaDePedidos = ({
                           <div>Fecha: {p.data().date}</div>
                           <div>Cliente: {p.data().client} </div>
                           <div>Mesa: {p.data().mesa}</div>
-                          <div>Hora:{p.data().horaInicio}</div>
+                          <div>Hora: {p.data().horaInicio}</div>
                           <div>Estado del Pedido: {p.data().status}</div>
                           </div>
                       </tr>
@@ -41,7 +41,7 @@ const ListaDePedidos = ({
                     </tbody>
                     {p.data().status === "pendiente" && (
                       <button
-                        className="btn btn-success"
+                        className="btn btn-success center"
                         onClick={() => {
                           const today = new Date();
                           const hours2 = today.getHours();
