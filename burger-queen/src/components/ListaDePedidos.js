@@ -4,7 +4,7 @@ import PedidoDeUnCliente from "./PedidoDeUnCliente";
 import {
   calculandoLaDuracion,
   agregarHoraDeTerminoAFirebase,
-  agregarDuracionAFirebase
+  agregarDuracionAFirebase,
 } from "../controller/pedidos";
 
 const ListaDePedidos = ({

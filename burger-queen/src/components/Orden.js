@@ -27,12 +27,9 @@ const Orden = ({
       >
         Nueva Orden
       </button>
-      <Link
-        to="/ordenes"
-        className="btn mx-2 px-5 mb-3 mt-3 aos-init aos-animate btn-lila"
-      >
-        Lista de ordenes
-      </Link>
+      <Link to="/ordenes"  className="btn mx-2 px-5 mb-3 mt-3 aos-init aos-animate btn-lila"
+        data-testid="order-list-btn"> Lista de ordenes
+    </Link>
       {/* <button
         data-testid="order-list-btn"
         type="button"

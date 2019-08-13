@@ -14,7 +14,7 @@ const ListaDeOrdenes = ({
   horas,
   minutes,
   segundos,
-  estado
+  estado,
 }) => {
   return (
     <div className="table">
@@ -32,7 +32,7 @@ const ListaDeOrdenes = ({
                           <div>Mesa: {p.data().mesa}</div>
                           <div>Fecha: {p.data().date}</div>
                           <div>Hora de pedido:{p.data().horaInicio}</div>
-                          {p.data().status === 'entregado' ?(<div>Tiempo de Preparacion:{p.data().duracion}</div>) : ''} 
+                         {p.data().status === 'entregado' ?(<div>Tiempo de Preparacion:{p.data().duracion}</div>) : ''} 
                           <div>Estado: {p.data().status}</div>
                           </div>
                       </tr>
