@@ -52,7 +52,7 @@ function App() {
 
   return (
     <div>
-      <Router>
+      {/* <Router> */}
         <Header logo={Logo} />
         
         <Switch>
@@ -97,7 +97,7 @@ function App() {
               />
              )}
           />
-        </Switch>
+
         <div>
         <Route
             path="/cocinero"
@@ -117,8 +117,8 @@ function App() {
             )}
           />
         </div>
-        
-      </Router>
+        </Switch>
+      {/* </Router> */}
     </div>
   );
 }
