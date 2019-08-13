@@ -82,6 +82,16 @@ export const calculandoLaDuracion = (
   return `${hora} : ${minutos} : ${segundos < 0 ? (segundos *= -1) : segundos}`;
 };
 
+
+export const agregarTotalCostAFirebase = (totalCost, documentId) => {
+  console.log("SE SUBIO LA DURACION A  FIREBASE");
+  const db = firebase.firestore();
+  db.collection("clients")
+    .doc(documentId)
+    .update({
+      total:totalCost,
+    });
+};
 // const firebase.firestore().collection(nameCollection).doc(docId).get();
 export const agregarDuracionAFirebase = (duracion, documentId) => {
   console.log("SE SUBIO LA DURACION A  FIREBASE");

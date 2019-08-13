@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import * as firebase from "firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
@@ -10,7 +11,8 @@ import ListaDePedidos from "./components/ListaDePedidos";
 import Logo from "./img/burger-logo.png";
 import Mesero from "./components/Mesero";
 import JefeDeCocina from "./components/JefeDeCocina";
-import Home from "./components/Home"
+import Home from "./components/Home";
+import ListaDeOrdenes2 from './components/ListaDeOrdenes2';
 
 import {
   gettingTotalCost,
@@ -25,6 +27,7 @@ import {
 } from "../src/controller/pedidos";
 
 function App() {
+
   const [minutes, setMinutes] = useState(null);
   const [horas, setHoras] = useState(null);
   const [segundos, setSegundos] = useState(null);
@@ -80,8 +83,21 @@ function App() {
               />
             )}
           />
+           <Route
+            path="/ordenes"
+            render={(props) => (
+              <ListaDeOrdenes2
+                {...props}
+                allPedidosFromFirebase={allPedidosFromFirebase}
+                documentId={documentId}
+                horas={horas}
+                minutes={minutes}
+                segundos={segundos}
+              
+              />
+             )}
+          />
         </Switch>
-
         <div>
         <Route
             path="/cocinero"
