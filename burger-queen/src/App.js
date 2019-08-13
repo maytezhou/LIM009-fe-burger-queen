@@ -11,7 +11,7 @@ import Logo from "./img/burger-logo.png";
 import Mesero from "./components/Mesero";
 import JefeDeCocina from "./components/JefeDeCocina";
 import Home from "./components/Home";
-import ListaDeOrdenes2 from './components/ListaDeOrdenes';
+import ListaDeOrdenes2 from './components/ListaDeOrdenes2';
 
 import {
   gettingTotalCost,

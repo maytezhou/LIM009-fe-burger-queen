@@ -8,7 +8,7 @@ import {
   actualizarEstadoEnFirebase
 } from "../controller/pedidos";
 
-const ListaDeOrdenes = ({
+const ListaDeOrdenes2 = ({
   allPedidosFromFirebase,
   documentId,
   horas,
@@ -88,4 +88,4 @@ const ListaDeOrdenes = ({
     </div>
   );
 };
-export default ListaDeOrdenes;
+export default ListaDeOrdenes2;
