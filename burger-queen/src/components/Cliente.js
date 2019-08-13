@@ -13,7 +13,6 @@ const Cliente = ({clientName, agregarNombreDelCliente,agregarNumeroDeMesa,numero
       value={clientName} required
       className="form-control"
       data-testid="client-input"
-      type="text"
       aria-label="Text input with segmented dropdown button"
     />
   <div className="input-group-append">

@@ -1,28 +1,34 @@
 import React, { useState } from "react";
 import * as firebase from "firebase";
-import Nav from "./components/Nav";
-import Orden from "./components/Orden";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import app from "../src/components/Firebase";
+import Header from "./components/Header";
 import "./App.css";
-import Menu from "./components/Menu";
-import Pedido from "./components/Pedido";
 import ListaDePedidos from "./components/ListaDePedidos";
 import Logo from "./img/logoBq.png";
-import { useCollection } from "react-firebase-hooks/firestore";
-import app from "../src/components/Firebase";
+import Mesero from "./components/Mesero";
+import JefeDeCocina from "./components/JefeDeCocina";
+import Home from "./components/Home"
+
 import {
   gettingTotalCost,
   agregarPedido,
   disminuirCntd,
   eliminarProducto,
   calculandoLaDuracion,
+  agregarDuracionAFirebase,
+  agregarHoraDeTerminoAFirebase,
+  actualizarEstadoEnFirebase,
+  agregarOrdenFirebase
 } from "../src/controller/pedidos";
 
 function App() {
   const [minutes, setMinutes] = useState(null);
   const [horas, setHoras] = useState(null);
   const [segundos, setSegundos] = useState(null);
-
-  const [pedidosId, setPedidosId] = useState("");
+  const [documentId, setPedidosId] = useState("");
   const [pedidos, setPedidos] = useState([]);
   const [clientName, setClientName] = useState("");
   const [numeroDeMesa, setTableNumber] = useState("");
@@ -41,113 +47,62 @@ function App() {
   const agregarNombreDelCliente = (e) => setClientName(e.target.value);
   const agregarNumeroDeMesa = (e) => setTableNumber(e.target.value);
 
-  // const firebase.firestore().collection(nameCollection).doc(docId).get();
-  const agregarDuracionAFirebase = (duracion, documentId) => {
-    console.log("SE SUBIO LA DURACION A  FIREBASE");
-    const db = firebase.firestore();
-    db.collection("clients")
-      .doc(documentId)
-      .update({
-        duracion
-      });
-  };
-  const agregarHoraDeTerminoAFirebase = (horaDeFin, documentId) => {
-    console.log("SE SUBIO LA HORA DE FIN  FIREBASE");
-    const db = firebase.firestore();
-    db.collection("clients")
-      .doc(documentId)
-      .update({
-        horaDeFin
-      });
-  };
-  
-
-  const agregarOrdenFirebase = (arrPedidos, nameClient, numeroDeMesa) => {
-    console.log("SE SUBIO A FIREBASE");
-    const db = firebase.firestore();
-    const today = new Date();
-    // const now= Date.now();
-    // console.log('horaaaaa',now/1000);
-    // console.log('segundoss',now%60);
-    // console.log('minuto',now/60);
-    const date =
-      today.getFullYear() +
-      "-" +
-      (today.getMonth() + 1) +
-      "-" +
-      today.getDate();
-    const time =
-      today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    const hours = today.getHours();
-    const minutes = today.getMinutes();
-    const seconds = today.getSeconds();
-    setHoras(hours);
-    setMinutes(minutes);
-    setSegundos(seconds);
-
-    db.collection("clients")
-      .add({
-        date,
-        horaInicio: time,
-        status: "pendiente",
-        client: nameClient,
-        order: arrPedidos,
-        mesa: numeroDeMesa
-      })
-      .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
-        setPedidosId(docRef.id);
-      });
-    setClientName("");
-    setTableNumber("");
-    setPedidos([]);
-  };
-
   return (
     <div>
-      <Nav logo={Logo} />
-      <Orden
-        setPedidos={setPedidos}
-        setClientName={setClientName}
-        setTableNumber={setTableNumber}
-      />
-      <div className="row">
-        <div className="col-6">
-          <Menu
-            agregarPedido={agregarPedido}
-            allProducts={allProducts}
-            pedidos={pedidos}
-            setPedidos={setPedidos}
+      <Router>
+        <Header logo={Logo} />
+        
+        <Switch>
+        <Route exact path="/" component={Home} />
+          <Route
+            path="/mesero"
+            render={(props) => (
+              <Mesero
+                {...props}
+                setPedidos={setPedidos}
+                setClientName={setClientName}
+                setTableNumber={setTableNumber}
+                allProducts={allProducts}
+                pedidos={pedidos}
+                setHoras={setHoras}
+                setMinutes={setMinutes}
+                setSegundos={setSegundos}
+                setPedidosId={setPedidosId}
+                clientName={clientName}
+                agregarNombreDelCliente={agregarNombreDelCliente}
+                agregarNumeroDeMesa={agregarNumeroDeMesa}
+                numeroDeMesa={numeroDeMesa}
+                documentId={documentId}
+                horas={horas}
+                minutes={minutes}
+                segundos={segundos}
+                allPedidosFromFirebase={allPedidosFromFirebase}
+              />
+            )}
+          />
+        </Switch>
+
+        <div>
+        <Route
+            path="/cocinero"
+            render={(props) => (
+              <JefeDeCocina
+                {...props}
+                allPedidosFromFirebase={allPedidosFromFirebase}
+                agregarHoraDeTerminoAFirebase={agregarHoraDeTerminoAFirebase}
+                documentId={documentId}
+                horas={horas}
+                minutes={minutes}
+                segundos={segundos}
+                calculandoLaDuracion={calculandoLaDuracion}
+                agregarDuracionAFirebase={agregarDuracionAFirebase}
+                actualizarEstadoEnFirebase={actualizarEstadoEnFirebase}
+              />
+            )}
           />
         </div>
-        <div className="col-6">
-          <Pedido
-            pedidos={pedidos}
-            eliminarProducto={eliminarProducto}
-            agregarPedido={agregarPedido}
-            disminuirCntd={disminuirCntd}
-            clientName={clientName}
-            agregarNombreDelCliente={agregarNombreDelCliente}
-            agregarOrdenFirebase={agregarOrdenFirebase}
-            agregarNumeroDeMesa={agregarNumeroDeMesa}
-            numeroDeMesa={numeroDeMesa}
-            gettingTotalCost={gettingTotalCost}
-            setPedidos={setPedidos}
-          />
-        </div>
-      </div>
-      <div>
-        <ListaDePedidos
-          allPedidosFromFirebase={allPedidosFromFirebase}
-          agregarHoraDeTerminoAFirebase={agregarHoraDeTerminoAFirebase}
-          documentId={pedidosId}
-          horas={horas}
-          minutes={minutes}
-          segundos={segundos}
-          calculandoLaDuracion={calculandoLaDuracion}
-          agregarDuracionAFirebase={agregarDuracionAFirebase}
-        />
-      </div>
+        
+      </Router>
     </div>
   );
 }

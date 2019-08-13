@@ -3,7 +3,6 @@ import Cliente from "./Cliente";
 import Producto from "./Producto";
 import Total from "./Total";
 
-
 const Pedido = ({
   pedidos,
   eliminarProducto,
@@ -15,7 +14,13 @@ const Pedido = ({
   agregarNumeroDeMesa,
   numeroDeMesa,
   gettingTotalCost,
-  setPedidos
+  setPedidos,
+  setHoras,
+  setMinutes,
+  setSegundos,
+  setClientName,
+  setTableNumber,
+  setPedidosId
 }) => {
   return (
     <form
@@ -73,9 +78,18 @@ const Pedido = ({
               <button
                 onClick={() => {
                   let numberTable = parseInt(numeroDeMesa);
-                  agregarOrdenFirebase(pedidos, clientName, numberTable);
-                 
-
+                  agregarOrdenFirebase(
+                    pedidos,
+                    clientName,
+                    numberTable,
+                    setHoras,
+                    setMinutes,
+                    setSegundos,
+                    setClientName,
+                    setTableNumber,
+                    setPedidosId,
+                    setPedidos,
+                  );
                 }}
               >
                 Enviar a cocina

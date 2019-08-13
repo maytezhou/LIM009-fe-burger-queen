@@ -7,7 +7,7 @@ import Bebidas from "./Bebidas";
 const Menu = ({ agregarPedido, allProducts, pedidos, setPedidos }) => {
   const [tipo, setTipo] = useState("desayuno");
   return (
-    <div>
+    <div className="card-header">
       <button
         onClick={() => {
           setTipo("desayuno");

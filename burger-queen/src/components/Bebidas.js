@@ -17,7 +17,7 @@ const Bebidas = ({ allProducts, agregarPedido,pedidos,setPedidos }) => {
                     <h5>
                       {ele.data().name} ${ele.data().price}{" "}
                     </h5>
-                    <img class="card-img-top" src={ele.data().img}></img>
+                    <img className="card-img-top" src={ele.data().img } alt="" ></img>
                   </div>
                   <div className="mb-3">
                     <button

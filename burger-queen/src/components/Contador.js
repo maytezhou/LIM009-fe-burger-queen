@@ -13,7 +13,8 @@ const Contador = ({
       type="button"
       onClick={() => {
         // agregarPedido(producto, pedidos);
-        setPedidos(agregarPedido(producto,pedidos));
+         setPedidos(agregarPedido(producto,pedidos));
+      // agregarPedido(producto,pedidos,setPedidos);
       }}
     >
       +

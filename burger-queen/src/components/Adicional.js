@@ -25,7 +25,7 @@ const Adicional = ({
         {" "}
         <div className="card-body">
         <h5 className="card-title">{optionName} ${precio}</h5>
-        <img class="card-img-top" className="card-title" src={imagen}></img>
+        <img class="card-img-top" className="card-title" src={imagen} alt=""></img>
         </div>
         <div className="mb-3">
         <button className="btn btn-success"
@@ -40,6 +40,7 @@ const Adicional = ({
              costo:precio * cantidad,
              
             }, pedidos));
+           
           }}
         >
           Agregar{" "}
