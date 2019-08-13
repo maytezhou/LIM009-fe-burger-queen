@@ -1,13 +1,14 @@
-import React from "react";
+/* import React from "react";
 
 import PedidoDeUnCliente from "./PedidoDeUnCliente";
 import {
   calculandoLaDuracion,
   agregarHoraDeTerminoAFirebase,
   agregarDuracionAFirebase,
-  actualizarEstadoEnFirebase
+  actualizarEstadoEnFirebase,
+  gettingTotalCost,
 } from "../controller/pedidos";
-
+import Total from './Total';
 const ListaDeOrdenes = ({
   allPedidosFromFirebase,
   documentId,
@@ -21,7 +22,7 @@ const ListaDeOrdenes = ({
       {allPedidosFromFirebase && (
         <div className="table-cell">
           {allPedidosFromFirebase.docs.map((p) => (
-            <div className="table-cell">
+            <div className="table-cell" >
               {p.data().status === estado && (
                 <div className="card-body">
                   <table className="table table-sm">
@@ -32,18 +33,20 @@ const ListaDeOrdenes = ({
                           <div>Mesa: 5</div>
                           <div>Fecha: {p.data().date}</div>
                           <div>Hora de pedido:{p.data().horaInicio}</div>
-                         {p.data().status === 'entregado' ?(<div>Tiempo de Preparacion:{p.data().duracion}</div>) : ''} 
+                          {p.data().status === 'entregado' ? <div>Tiempo de Preparacion:{p.data().duracion}</div> : ''}
                           <div>Estado: {p.data().status}</div>
-                          
+
                         </div>
                       </tr>
                     </thead>
                     <tbody>
-                      <PedidoDeUnCliente pedido={p} />
+                     <PedidoDeUnCliente pedido={p} />
+                     
                     </tbody>
                     {p.data().status === "pendiente" ? (
                       <button
                         onClick={() => {
+                       
                           const today = new Date();
                           const hours2 = today.getHours();
                           const minutes2 = today.getMinutes();
@@ -77,8 +80,8 @@ const ListaDeOrdenes = ({
                         Listo para servirse
                       </button>
                     ) : (
-                      ""
-                    )}
+                        ""
+                      )}
                   </table>
                 </div>
               )}
@@ -90,3 +93,4 @@ const ListaDeOrdenes = ({
   );
 };
 export default ListaDeOrdenes;
+ */

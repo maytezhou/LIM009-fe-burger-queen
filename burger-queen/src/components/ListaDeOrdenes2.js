@@ -5,8 +5,10 @@ import {
   calculandoLaDuracion,
   agregarHoraDeTerminoAFirebase,
   agregarDuracionAFirebase,
-  actualizarEstadoEnFirebase
+  actualizarEstadoEnFirebase,
+  gettingTotalCost,
 } from "../controller/pedidos";
+import Total from './Total';
 
 const ListaDeOrdenes2 = ({
   allPedidosFromFirebase,
@@ -21,7 +23,7 @@ const ListaDeOrdenes2 = ({
       {allPedidosFromFirebase && (
         <div className="table-cell">
           {allPedidosFromFirebase.docs.map((p) => (
-            <div className="table-cell">
+            <div className="table-cell"> 
            
                 <div className="card-body">
                   <table className="table table-sm">
@@ -31,54 +33,18 @@ const ListaDeOrdenes2 = ({
                           <div>Cliente: {p.data().client} </div>
                           <div>Mesa:  {p.data().mesa} </div>
                           <div>Fecha: {p.data().date}</div>
-                          <div>Hora de pedido:{p.data().horaInicio}</div>
+                          {p.data().status === "entregado" ? <div>Estado del Pedido: {p.data().status}</div> : ''}
+                          <div>Hora del pedido:{p.data().horaInicio}</div>
+                          {p.data().status === 'entregado' ?<div>Tiempo de Preparacion:{p.data().duracion}</div> : ''} 
                           <div>Estado: {p.data().status}</div>
                           
                         </div>
                       </tr>
                     </thead>
                     <tbody>
-                      <PedidoDeUnCliente pedido={p} />
+                    <PedidoDeUnCliente pedido={p} />
                     </tbody>
-                    {p.data().status === "pendiente" ? (
-                      <button
-                        onClick={() => {
-                          const today = new Date();
-                          const hours2 = today.getHours();
-                          const minutes2 = today.getMinutes();
-                          const seconds2 = today.getSeconds();
-                          const timeFin =
-                            hours2 + ":" + minutes2 + ":" + seconds2;
-
-                          agregarHoraDeTerminoAFirebase(timeFin, documentId);
-                          calculandoLaDuracion(
-                            horas,
-                            hours2,
-                            minutes,
-                            minutes2,
-                            segundos,
-                            seconds2
-                          );
-                          agregarDuracionAFirebase(
-                            calculandoLaDuracion(
-                              horas,
-                              hours2,
-                              minutes,
-                              minutes2,
-                              segundos,
-                              seconds2
-                            ),
-                            documentId
-                          );
-                          actualizarEstadoEnFirebase("entregado", documentId);
-                        }}
-                      >
-                        Listo para servirse
-                      </button>
-                    ) : (
-                      ""
-                    )}
-                  </table>
+                   </table>
                 </div>
           
             </div>
