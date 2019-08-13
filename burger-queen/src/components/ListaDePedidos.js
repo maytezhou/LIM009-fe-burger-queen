@@ -30,10 +30,10 @@ const ListaDePedidos = ({
                         <div className="card-header">
                           <div>Fecha: {p.data().date}</div>
                           <div>Cliente: {p.data().client} </div>
-                          <div>Mesa: 5</div>
+                          <div>Mesa: {p.data().mesa}</div>
                           <div>Hora:{p.data().horaInicio}</div>
                           <div>Estado del Pedido: {p.data().status}</div>
-                        </div>
+                          </div>
                       </tr>
                     </thead>
                     <tbody>

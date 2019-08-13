@@ -6,7 +6,7 @@ body{
   color: #1e3b58
 }
 header{
-  background-color: #fa9875;
+  background-color: #f97c48;
   margin: 0 auto;
   width: 100%;
   height: 30%;
@@ -40,7 +40,7 @@ header{
   color: #ffff;
 }
 .btn-lila{
-  background-color: #fde1be
+  background-color: #fa9875
 }
 .btn-img-delete{
   width: 25%
